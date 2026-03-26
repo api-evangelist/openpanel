@@ -1,32 +1,60 @@
 aid: openpanel
 name: OpenPanel
 description: >-
-  OpenPanel is an open source product analytics platform for developers with event tracking and user journey analysis.
+  OpenPanel is an open source product analytics platform that provides event
+  tracking, user journey analysis, real-time dashboards, and funnel analysis,
+  offering a privacy-friendly alternative to tools like Mixpanel and Amplitude.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API Analysis
   - Product Analytics
+  - Event Tracking
+  - Open Source
+  - User Analytics
+  - Funnels
+  - Real-Time Analytics
 url: >-
   https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml
 created: '2026-03-26'
 modified: '2026-03-26'
 specificationVersion: '0.19'
 apis:
-  - aid: openpanel:openpanel
-    name: OpenPanel
+  - aid: openpanel:openpanel-api
+    name: OpenPanel API
     description: >-
-      OpenPanel is an open source product analytics platform for developers with event tracking and user journey analysis.
+      The OpenPanel API allows developers to track events, manage projects,
+      retrieve analytics data, and integrate OpenPanel product analytics into
+      applications and workflows programmatically.
     humanURL: https://openpanel.dev
-    tags:
-      - API Analysis
-      - Product Analytics
     properties:
+      - type: Documentation
+        url: https://openpanel.dev/docs
+      - type: GettingStarted
+        url: https://openpanel.dev/docs/getting-started
       - type: GitHubOrg
         url: https://github.com/Openpanel-dev/openpanel
+      - type: SDKs
+        url: https://openpanel.dev/docs/sdks
+    tags:
+      - Product Analytics
+      - Event Tracking
+      - Open Source
+      - User Analytics
 common:
   - type: Website
     url: https://openpanel.dev
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GitHub
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: Blog
+    url: https://openpanel.dev/blog
+  - type: SelfHosting
+    url: https://openpanel.dev/docs/self-hosting
+  - type: Login
+    url: https://dashboard.openpanel.dev
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
