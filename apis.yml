@@ -16,7 +16,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml
 created: '2026-03-26'
-modified: '2026-03-26'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: openpanel:openpanel-api
@@ -26,6 +26,7 @@ apis:
       retrieve analytics data, and integrate OpenPanel product analytics into
       applications and workflows programmatically.
     humanURL: https://openpanel.dev
+    baseURL: https://api.openpanel.dev
     properties:
       - type: Documentation
         url: https://openpanel.dev/docs
@@ -35,6 +36,9 @@ apis:
         url: https://github.com/Openpanel-dev/openpanel
       - type: SDKs
         url: https://openpanel.dev/docs/sdks
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/openapi/openpanel-openapi.yml
     tags:
       - Event Tracking
       - Open Source

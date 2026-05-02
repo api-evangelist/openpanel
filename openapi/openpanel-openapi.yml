@@ -1,0 +1,4439 @@
+openapi: 3.1.0
+info:
+  title: OpenPanel API
+  version: 1.0.0
+components:
+  schemas: {}
+paths:
+  /event/:
+    post:
+      tags:
+      - Event
+      description: Deprecated direct event ingestion endpoint. Use /track instead.
+      responses:
+        '200':
+          description: Default Response
+  /profile/:
+    post:
+      tags:
+      - Profile
+      description: Identify or update a user profile.
+      responses:
+        '200':
+          description: Default Response
+  /profile/increment:
+    post:
+      tags:
+      - Profile
+      description: Increment a numeric property on a user profile.
+      responses:
+        '200':
+          description: Default Response
+  /profile/decrement:
+    post:
+      tags:
+      - Profile
+      description: Decrement a numeric property on a user profile.
+      responses:
+        '200':
+          description: Default Response
+  /export/events:
+    get:
+      tags:
+      - Export
+      description: Export a paginated list of raw events with optional filtering by date, profile, and event type.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: project_id
+      - schema:
+          type: string
+        in: query
+        name: projectId
+      - schema:
+          type: string
+        in: query
+        name: profileId
+      - schema:
+          anyOf:
+          - type: string
+          - type: array
+            items:
+              type: string
+        in: query
+        name: event
+      - schema:
+          type: string
+        in: query
+        name: start
+      - schema:
+          type: string
+        in: query
+        name: end
+      - schema:
+          default: 1
+          type: number
+        in: query
+        name: page
+      - schema:
+          default: 50
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: array
+          items:
+            type: string
+        in: query
+        name: includes
+      responses:
+        '200':
+          description: Default Response
+  /export/charts:
+    get:
+      tags:
+      - Export
+      description: Export aggregated chart/analytics data for a series of events over a time range.
+      parameters:
+      - schema:
+          default: []
+          description: Array of dimensions to break down the data by
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+            required:
+            - name
+        in: query
+        name: breakdowns
+        description: Array of dimensions to break down the data by
+      - schema:
+          default: day
+          description: The time interval for data aggregation (e.g., day, week, month)
+          type: string
+          enum:
+          - minute
+          - day
+          - hour
+          - week
+          - month
+        in: query
+        name: interval
+        description: The time interval for data aggregation (e.g., day, week, month)
+      - schema:
+          default: 30d
+          description: The time range for which data should be displayed
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+        description: The time range for which data should be displayed
+      - schema:
+          default: false
+          description: Whether to show data from the previous period for comparison
+          type: boolean
+        in: query
+        name: previous
+        description: Whether to show data from the previous period for comparison
+      - schema:
+          description: Custom start date for the data range (overrides range if provided)
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+        description: Custom start date for the data range (overrides range if provided)
+      - schema:
+          description: Custom end date for the data range (overrides range if provided)
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+        description: Custom end date for the data range (overrides range if provided)
+      - schema:
+          type: string
+        in: query
+        name: project_id
+      - schema:
+          type: string
+        in: query
+        name: projectId
+      - schema:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              filters:
+                default: []
+                description: Filters applied specifically to this event
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: Unique identifier for the filter
+                      type: string
+                    name:
+                      type: string
+                      description: The property name to filter on
+                    operator:
+                      type: string
+                      enum:
+                      - is
+                      - isNot
+                      - contains
+                      - doesNotContain
+                      - startsWith
+                      - endsWith
+                      - regex
+                      - isNull
+                      - isNotNull
+                      - gt
+                      - lt
+                      - gte
+                      - lte
+                      - inCohort
+                      - notInCohort
+                      description: The operator to use for the filter
+                    value:
+                      type: array
+                      items:
+                        anyOf:
+                        - anyOf:
+                          - anyOf:
+                            - type: string
+                            - type: number
+                          - type: boolean
+                        - type: 'null'
+                      description: The values to filter on
+                    cohortId:
+                      description: Cohort ID when using inCohort/notInCohort operators
+                      type: string
+                  required:
+                  - name
+                  - operator
+                  - value
+              segment:
+                default: event
+                description: Defines how the event data should be segmented or aggregated
+                type: string
+                enum:
+                - event
+                - user
+                - session
+                - group
+                - user_average
+                - one_event_per_user
+                - property_sum
+                - property_average
+                - property_max
+                - property_min
+              property:
+                description: Optional property of the event used for specific segment calculations (e.g., value for property_sum/average)
+                type: string
+            required:
+            - name
+        in: query
+        name: series
+      - schema:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              filters:
+                default: []
+                description: Filters applied specifically to this event
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: Unique identifier for the filter
+                      type: string
+                    name:
+                      type: string
+                      description: The property name to filter on
+                    operator:
+                      type: string
+                      enum:
+                      - is
+                      - isNot
+                      - contains
+                      - doesNotContain
+                      - startsWith
+                      - endsWith
+                      - regex
+                      - isNull
+                      - isNotNull
+                      - gt
+                      - lt
+                      - gte
+                      - lte
+                      - inCohort
+                      - notInCohort
+                      description: The operator to use for the filter
+                    value:
+                      type: array
+                      items:
+                        anyOf:
+                        - anyOf:
+                          - anyOf:
+                            - type: string
+                            - type: number
+                          - type: boolean
+                        - type: 'null'
+                      description: The values to filter on
+                    cohortId:
+                      description: Cohort ID when using inCohort/notInCohort operators
+                      type: string
+                  required:
+                  - name
+                  - operator
+                  - value
+              segment:
+                default: event
+                description: Defines how the event data should be segmented or aggregated
+                type: string
+                enum:
+                - event
+                - user
+                - session
+                - group
+                - user_average
+                - one_event_per_user
+                - property_sum
+                - property_average
+                - property_max
+                - property_min
+              property:
+                description: Optional property of the event used for specific segment calculations (e.g., value for property_sum/average)
+                type: string
+            required:
+            - name
+        in: query
+        name: events
+      responses:
+        '200':
+          description: Default Response
+  /import/events:
+    post:
+      tags:
+      - Import
+      description: Bulk import historical events.
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/overview:
+    get:
+      tags:
+      - Insights
+      description: Get an overview of key metrics for the project (sessions, pageviews, bounce rate, duration).
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+          enum:
+          - hour
+          - day
+          - week
+          - month
+        in: query
+        name: interval
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/active_users:
+    get:
+      tags:
+      - Insights
+      description: Get rolling active user counts over the last N days.
+      parameters:
+      - schema:
+          default: 7
+          type: integer
+          minimum: 1
+          maximum: 90
+        in: query
+        name: days
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/retention:
+    get:
+      tags:
+      - Insights
+      description: Get weekly retention series data.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/retention/cohort:
+    get:
+      tags:
+      - Insights
+      description: Get retention cohort data.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/pages/top:
+    get:
+      tags:
+      - Insights
+      description: Get the top pages by pageviews for the given date range.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/pages/entry_exit:
+    get:
+      tags:
+      - Insights
+      description: Get entry or exit pages ranked by session count.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: entry
+          type: string
+          enum:
+          - entry
+          - exit
+        in: query
+        name: mode
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/pages/performance:
+    get:
+      tags:
+      - Insights
+      description: Get page-level performance metrics (bounce rate, avg duration, sessions).
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+        in: query
+        name: search
+      - schema:
+          type: string
+          enum:
+          - sessions
+          - pageviews
+          - bounce_rate
+          - avg_duration
+        in: query
+        name: sortBy
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        in: query
+        name: sortOrder
+      - schema:
+          default: 50
+          type: integer
+          minimum: 1
+          maximum: 500
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/metrics:
+    get:
+      tags:
+      - Insights
+      description: Get aggregated website metrics including sessions, pageviews, and bounce rate.
+      parameters:
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/live:
+    get:
+      tags:
+      - Insights
+      description: Get the current number of live (active) visitors.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/pages:
+    get:
+      tags:
+      - Insights
+      description: Get top pages with pageview counts for the selected date range.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/referrer:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "referrer" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/referrer_name:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "referrer_name" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/referrer_type:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "referrer_type" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/utm_source:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "utm_source" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/utm_medium:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "utm_medium" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/utm_campaign:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "utm_campaign" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/utm_term:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "utm_term" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/utm_content:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "utm_content" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/region:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "region" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/country:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "country" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/city:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "city" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/device:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "device" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/brand:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "brand" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/model:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "model" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/browser:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "browser" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/browser_version:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "browser_version" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/os:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "os" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/os_version:
+    get:
+      tags:
+      - Insights
+      description: Get top values for the "os_version" dimension.
+      parameters:
+      - schema:
+          default: []
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Unique identifier for the filter
+                type: string
+              name:
+                type: string
+                description: The property name to filter on
+              operator:
+                type: string
+                enum:
+                - is
+                - isNot
+                - contains
+                - doesNotContain
+                - startsWith
+                - endsWith
+                - regex
+                - isNull
+                - isNotNull
+                - gt
+                - lt
+                - gte
+                - lte
+                - inCohort
+                - notInCohort
+                description: The operator to use for the filter
+              value:
+                type: array
+                items:
+                  anyOf:
+                  - anyOf:
+                    - anyOf:
+                      - type: string
+                      - type: number
+                    - type: boolean
+                  - type: 'null'
+                description: The values to filter on
+              cohortId:
+                description: Cohort ID when using inCohort/notInCohort operators
+                type: string
+            required:
+            - name
+            - operator
+            - value
+        in: query
+        name: filters
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+      - schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+      - schema:
+          default: 7d
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: number
+        in: query
+        name: cursor
+      - schema:
+          default: 10
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/funnel:
+    get:
+      tags:
+      - Insights
+      description: Get funnel conversion rates for a sequence of events.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: string
+        in: query
+        name: steps
+        required: true
+      - schema:
+          default: 24
+          type: integer
+          minimum: 1
+          maximum: 720
+        in: query
+        name: windowHours
+      - schema:
+          default: session_id
+          type: string
+          enum:
+          - session_id
+          - profile_id
+        in: query
+        name: groupBy
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/traffic/referrers:
+    get:
+      tags:
+      - Insights
+      description: Get traffic breakdown by referrer source.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: referrer_name
+          type: string
+          enum:
+          - referrer_name
+          - referrer_type
+          - referrer
+          - utm_source
+          - utm_medium
+          - utm_campaign
+        in: query
+        name: breakdown
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/traffic/geo:
+    get:
+      tags:
+      - Insights
+      description: Get traffic breakdown by geographic dimension (country, region, city).
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: country
+          type: string
+          enum:
+          - country
+          - region
+          - city
+        in: query
+        name: breakdown
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/traffic/devices:
+    get:
+      tags:
+      - Insights
+      description: Get traffic breakdown by device type, browser, or OS.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: device
+          type: string
+          enum:
+          - device
+          - browser
+          - os
+        in: query
+        name: breakdown
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/user_flow:
+    get:
+      tags:
+      - Insights
+      description: Get user flow paths before, after, or between specified events.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+        in: query
+        name: startEvent
+        required: true
+      - schema:
+          type: string
+        in: query
+        name: endEvent
+      - schema:
+          default: after
+          type: string
+          enum:
+          - after
+          - before
+          - between
+        in: query
+        name: mode
+      - schema:
+          default: 5
+          type: integer
+          minimum: 2
+          maximum: 10
+        in: query
+        name: steps
+      - schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: string
+        in: query
+        name: exclude
+      - schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: string
+        in: query
+        name: include
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/engagement:
+    get:
+      tags:
+      - Insights
+      description: Get engagement metrics for the project.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/events:
+    get:
+      tags:
+      - Insights
+      description: Query events with optional filters for date range, profile, and properties.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: string
+        in: query
+        name: eventNames
+      - schema:
+          type: string
+        in: query
+        name: path
+      - schema:
+          type: string
+        in: query
+        name: country
+      - schema:
+          type: string
+        in: query
+        name: city
+      - schema:
+          type: string
+        in: query
+        name: device
+      - schema:
+          type: string
+        in: query
+        name: browser
+      - schema:
+          type: string
+        in: query
+        name: os
+      - schema:
+          type: string
+        in: query
+        name: referrer
+      - schema:
+          type: string
+        in: query
+        name: referrerName
+      - schema:
+          type: string
+        in: query
+        name: referrerType
+      - schema:
+          type: string
+        in: query
+        name: profileId
+      - schema:
+          type: object
+          propertyNames:
+            type: string
+          additionalProperties:
+            type: string
+        in: query
+        name: properties
+      - schema:
+          default: 20
+          type: integer
+          minimum: 1
+          maximum: 100
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/events/names:
+    get:
+      tags:
+      - Insights
+      description: List all distinct event names tracked in the project.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/events/properties:
+    get:
+      tags:
+      - Insights
+      description: List all property keys for a given event name.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: eventName
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/events/property_values:
+    get:
+      tags:
+      - Insights
+      description: Get the top values for a specific event property key.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: eventName
+        required: true
+      - schema:
+          type: string
+        in: query
+        name: propertyKey
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/profiles:
+    get:
+      tags:
+      - Insights
+      description: Search and filter user profiles.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: name
+      - schema:
+          type: string
+        in: query
+        name: email
+      - schema:
+          type: string
+        in: query
+        name: country
+      - schema:
+          type: string
+        in: query
+        name: city
+      - schema:
+          type: string
+        in: query
+        name: device
+      - schema:
+          type: string
+        in: query
+        name: browser
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        in: query
+        name: inactiveDays
+      - schema:
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        in: query
+        name: minSessions
+      - schema:
+          type: string
+        in: query
+        name: performedEvent
+      - schema:
+          default: desc
+          type: string
+          enum:
+          - asc
+          - desc
+        in: query
+        name: sortOrder
+      - schema:
+          default: 20
+          type: integer
+          minimum: 1
+          maximum: 100
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/profiles/{profileId}:
+    get:
+      tags:
+      - Insights
+      description: Get a single user profile with their recent events.
+      parameters:
+      - schema:
+          default: 20
+          type: integer
+          minimum: 1
+          maximum: 100
+        in: query
+        name: eventLimit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: profileId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/profiles/{profileId}/sessions:
+    get:
+      tags:
+      - Insights
+      description: Get sessions for a specific user profile.
+      parameters:
+      - schema:
+          default: 20
+          type: integer
+          minimum: 1
+          maximum: 100
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: profileId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/profiles/{profileId}/metrics:
+    get:
+      tags:
+      - Insights
+      description: Get aggregated metrics for a specific user profile.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: profileId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/sessions:
+    get:
+      tags:
+      - Insights
+      description: Query sessions with optional filters.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+        in: query
+        name: country
+      - schema:
+          type: string
+        in: query
+        name: city
+      - schema:
+          type: string
+        in: query
+        name: device
+      - schema:
+          type: string
+        in: query
+        name: browser
+      - schema:
+          type: string
+        in: query
+        name: os
+      - schema:
+          type: string
+        in: query
+        name: referrer
+      - schema:
+          type: string
+        in: query
+        name: referrerName
+      - schema:
+          type: string
+        in: query
+        name: referrerType
+      - schema:
+          type: string
+        in: query
+        name: profileId
+      - schema:
+          default: 20
+          type: integer
+          minimum: 1
+          maximum: 100
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/groups/types:
+    get:
+      tags:
+      - Insights
+      description: List all group types defined in the project.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/groups:
+    get:
+      tags:
+      - Insights
+      description: Search and filter groups.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: type
+      - schema:
+          type: string
+        in: query
+        name: search
+      - schema:
+          default: 20
+          type: integer
+          minimum: 1
+          maximum: 100
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/groups/{groupId}:
+    get:
+      tags:
+      - Insights
+      description: Get a single group with its members.
+      parameters:
+      - schema:
+          default: 10
+          type: integer
+          minimum: 1
+          maximum: 50
+        in: query
+        name: memberLimit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: groupId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/reports/{reportId}/data:
+    get:
+      tags:
+      - Insights
+      description: Get the data for a saved report.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: reportId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/gsc/overview:
+    get:
+      tags:
+      - Insights
+      description: Get a Google Search Console performance overview (clicks, impressions, CTR, position).
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: day
+          type: string
+          enum:
+          - day
+          - week
+          - month
+        in: query
+        name: interval
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/gsc/pages:
+    get:
+      tags:
+      - Insights
+      description: Get top pages from Google Search Console.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: 100
+          type: integer
+          minimum: 1
+          maximum: 1000
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/gsc/pages/details:
+    get:
+      tags:
+      - Insights
+      description: Get detailed GSC metrics for a specific page URL.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+          format: uri
+        in: query
+        name: page
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/gsc/queries:
+    get:
+      tags:
+      - Insights
+      description: Get top search queries from Google Search Console.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: 100
+          type: integer
+          minimum: 1
+          maximum: 1000
+        in: query
+        name: limit
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/gsc/queries/details:
+    get:
+      tags:
+      - Insights
+      description: Get detailed GSC metrics for a specific search query.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+        in: query
+        name: query
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/gsc/queries/opportunities:
+    get:
+      tags:
+      - Insights
+      description: Get GSC query opportunities (high impressions, low CTR).
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          default: 50
+          type: integer
+          minimum: 1
+          maximum: 9007199254740991
+        in: query
+        name: minImpressions
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /insights/{projectId}/gsc/cannibalization:
+    get:
+      tags:
+      - Insights
+      description: Detect keyword cannibalization across pages in Google Search Console.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: startDate
+      - schema:
+          type: string
+        in: query
+        name: endDate
+      - schema:
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /track/:
+    post:
+      tags:
+      - Track
+      description: Ingest a tracking event (track, identify, group, increment, decrement, replay).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - track
+                  payload:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      properties:
+                        type: object
+                        propertyNames:
+                          type: string
+                        additionalProperties: {}
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      groups:
+                        type: array
+                        items:
+                          type: string
+                          minLength: 1
+                    required:
+                    - name
+                required:
+                - type
+                - payload
+                title: Track
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - identify
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      firstName:
+                        type: string
+                      lastName:
+                        type: string
+                      email:
+                        type: string
+                        format: email
+                        pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+                      avatar:
+                        type: string
+                        format: uri
+                      properties:
+                        type: object
+                        propertyNames:
+                          type: string
+                        additionalProperties: {}
+                    required:
+                    - profileId
+                required:
+                - type
+                - payload
+                title: Identify
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - increment
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      property:
+                        type: string
+                        minLength: 1
+                      value:
+                        type: number
+                        exclusiveMinimum: 0
+                    required:
+                    - profileId
+                    - property
+                required:
+                - type
+                - payload
+                title: Increment
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - decrement
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      property:
+                        type: string
+                        minLength: 1
+                      value:
+                        type: number
+                        exclusiveMinimum: 0
+                    required:
+                    - profileId
+                    - property
+                required:
+                - type
+                - payload
+                title: Decrement
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - alias
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      alias:
+                        type: string
+                        minLength: 1
+                    required:
+                    - profileId
+                    - alias
+                required:
+                - type
+                - payload
+                title: Alias
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - replay
+                  payload:
+                    type: object
+                    properties:
+                      chunk_index:
+                        type: integer
+                        minimum: 0
+                        maximum: 65535
+                      events_count:
+                        type: integer
+                        minimum: 1
+                        maximum: 9007199254740991
+                      is_full_snapshot:
+                        type: boolean
+                      started_at:
+                        type: string
+                        format: date-time
+                        pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                      ended_at:
+                        type: string
+                        format: date-time
+                        pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                      payload:
+                        type: string
+                        maxLength: 2097152
+                    required:
+                    - chunk_index
+                    - events_count
+                    - is_full_snapshot
+                    - started_at
+                    - ended_at
+                    - payload
+                required:
+                - type
+                - payload
+                title: Replay
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - group
+                  payload:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      type:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      properties:
+                        type: object
+                        propertyNames:
+                          type: string
+                        additionalProperties: {}
+                    required:
+                    - id
+                    - type
+                    - name
+                required:
+                - type
+                - payload
+                title: Group
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - assign_group
+                  payload:
+                    type: object
+                    properties:
+                      groupIds:
+                        type: array
+                        items:
+                          type: string
+                          minLength: 1
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                    required:
+                    - groupIds
+                required:
+                - type
+                - payload
+                title: Assign Group
+              type: object
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deviceId:
+                    type: string
+                  sessionId:
+                    type: string
+                required:
+                - deviceId
+                - sessionId
+                additionalProperties: false
+  /track/device-id:
+    get:
+      tags:
+      - Track
+      description: Get or generate a stable device ID and session ID for the current visitor.
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deviceId:
+                    type: string
+                  sessionId:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - deviceId
+                - sessionId
+                additionalProperties: false
+  /manage/projects:
+    get:
+      tags:
+      - Manage
+      description: List all projects for the organization.
+      responses:
+        '200':
+          description: Default Response
+    post:
+      tags:
+      - Manage
+      description: Create a new project and its first write client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                domain:
+                  anyOf:
+                  - anyOf:
+                    - type: string
+                      format: uri
+                    - type: string
+                      const: ''
+                  - type: 'null'
+                cors:
+                  default: []
+                  type: array
+                  items:
+                    type: string
+                crossDomain:
+                  default: false
+                  type: boolean
+                types:
+                  default: []
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - website
+                    - app
+                    - backend
+              required:
+              - name
+      responses:
+        '200':
+          description: Default Response
+  /manage/projects/{id}:
+    get:
+      tags:
+      - Manage
+      description: Get a single project by ID.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+    patch:
+      tags:
+      - Manage
+      description: Update project settings (name, domain, CORS, tracking options).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                domain:
+                  anyOf:
+                  - anyOf:
+                    - type: string
+                      format: uri
+                    - type: string
+                      const: ''
+                  - type: 'null'
+                cors:
+                  type: array
+                  items:
+                    type: string
+                crossDomain:
+                  type: boolean
+                allowUnsafeRevenueTracking:
+                  type: boolean
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+    delete:
+      tags:
+      - Manage
+      description: Soft-delete a project (scheduled for removal in 24 hours).
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /manage/clients:
+    get:
+      tags:
+      - Manage
+      description: List all API clients for the organization, optionally filtered by project.
+      responses:
+        '200':
+          description: Default Response
+    post:
+      tags:
+      - Manage
+      description: Create a new API client (read, write, or root type) and return its generated secret.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                projectId:
+                  type: string
+                type:
+                  default: write
+                  type: string
+                  enum:
+                  - read
+                  - write
+                  - root
+              required:
+              - name
+      responses:
+        '200':
+          description: Default Response
+  /manage/clients/{id}:
+    get:
+      tags:
+      - Manage
+      description: Get a single API client by ID.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+    patch:
+      tags:
+      - Manage
+      description: Update an API client name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+    delete:
+      tags:
+      - Manage
+      description: Delete an API client.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /manage/references:
+    get:
+      tags:
+      - Manage
+      description: List annotation references for a project.
+      responses:
+        '200':
+          description: Default Response
+    post:
+      tags:
+      - Manage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectId:
+                  type: string
+                title:
+                  type: string
+                  minLength: 1
+                description:
+                  type: string
+                datetime:
+                  type: string
+              required:
+              - projectId
+              - title
+              - datetime
+      responses:
+        '200':
+          description: Default Response
+  /manage/references/{id}:
+    get:
+      tags:
+      - Manage
+      description: Get a single annotation reference by ID.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+    patch:
+      tags:
+      - Manage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  minLength: 1
+                description:
+                  type: string
+                datetime:
+                  type: string
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+    delete:
+      tags:
+      - Manage
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: id
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /manage/projects/{projectId}/dashboards:
+    get:
+      tags:
+      - Manage
+      description: List all dashboards for a project.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+  /manage/projects/{projectId}/dashboards/{dashboardId}/reports:
+    get:
+      tags:
+      - Manage
+      description: List all reports in a dashboard.
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: projectId
+        required: true
+      - schema:
+          type: string
+        in: path
+        name: dashboardId
+        required: true
+      responses:
+        '200':
+          description: Default Response
+tags:
+- name: Track
+  description: Track events and sessions
+- name: Profile
+  description: Identify and update user profiles
+- name: Export
+  description: Export data
+- name: Import
+  description: Import historical data
+- name: Insights
+  description: Query analytics data
+- name: Manage
+  description: Manage projects and clients
+- name: Event
+  description: Legacy event ingestion (deprecated, use /track)
