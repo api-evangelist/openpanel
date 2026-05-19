@@ -1,0 +1,672 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenPanel API — Manage
+  description: 'OpenPanel API — Manage. 17 operations. Lead operation: Manage. Self-contained Naftiko capability covering
+    one Openpanel business surface.'
+  tags:
+  - Openpanel
+  - Manage
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENPANEL_API_KEY: OPENPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openpanel-manage
+    baseUri: ''
+    description: OpenPanel API — Manage business capability. Self-contained, no shared references.
+    resources:
+    - name: manage-clients
+      path: /manage/clients
+      operations:
+      - name: get
+        method: GET
+        description: List all API clients for the organization, optionally filtered by project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new API client (read, write, or root type) and return its generated secret.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: manage-clients-id
+      path: /manage/clients/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Get a single API client by ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: patch
+        method: PATCH
+        description: Update an API client name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: delete
+        method: DELETE
+        description: Delete an API client.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: manage-projects
+      path: /manage/projects
+      operations:
+      - name: get
+        method: GET
+        description: List all projects for the organization.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new project and its first write client.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: manage-projects-id
+      path: /manage/projects/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Get a single project by ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: patch
+        method: PATCH
+        description: Update project settings (name, domain, CORS, tracking options).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: delete
+        method: DELETE
+        description: Soft-delete a project (scheduled for removal in 24 hours).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: manage-projects-projectId-dashboards
+      path: /manage/projects/{projectId}/dashboards
+      operations:
+      - name: get
+        method: GET
+        description: List all dashboards for a project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: manage-projects-projectId-dashboards-dashboardId-reports
+      path: /manage/projects/{projectId}/dashboards/{dashboardId}/reports
+      operations:
+      - name: get
+        method: GET
+        description: List all reports in a dashboard.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: dashboardId
+          in: path
+          type: string
+          required: true
+    - name: manage-references
+      path: /manage/references
+      operations:
+      - name: get
+        method: GET
+        description: List annotation references for a project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: manage-references-id
+      path: /manage/references/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Get a single annotation reference by ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: patch
+        method: PATCH
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: delete
+        method: DELETE
+        description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: openpanel-manage-rest
+    port: 8080
+    description: REST adapter for OpenPanel API — Manage. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/manage/clients
+      name: manage-clients
+      description: REST surface for manage-clients.
+      operations:
+      - method: GET
+        name: get
+        description: List all API clients for the organization, optionally filtered by project.
+        call: openpanel-manage.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new API client (read, write, or root type) and return its generated secret.
+        call: openpanel-manage.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage/clients/{id}
+      name: manage-clients-id
+      description: REST surface for manage-clients-id.
+      operations:
+      - method: GET
+        name: get
+        description: Get a single API client by ID.
+        call: openpanel-manage.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Update an API client name.
+        call: openpanel-manage.patch
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete an API client.
+        call: openpanel-manage.delete
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage/projects
+      name: manage-projects
+      description: REST surface for manage-projects.
+      operations:
+      - method: GET
+        name: get
+        description: List all projects for the organization.
+        call: openpanel-manage.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new project and its first write client.
+        call: openpanel-manage.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage/projects/{id}
+      name: manage-projects-id
+      description: REST surface for manage-projects-id.
+      operations:
+      - method: GET
+        name: get
+        description: Get a single project by ID.
+        call: openpanel-manage.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Update project settings (name, domain, CORS, tracking options).
+        call: openpanel-manage.patch
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Soft-delete a project (scheduled for removal in 24 hours).
+        call: openpanel-manage.delete
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage/projects/{projectid}/dashboards
+      name: manage-projects-projectid-dashboards
+      description: REST surface for manage-projects-projectId-dashboards.
+      operations:
+      - method: GET
+        name: get
+        description: List all dashboards for a project.
+        call: openpanel-manage.get
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage/projects/{projectid}/dashboards/{dashboardid}/reports
+      name: manage-projects-projectid-dashboards-dashboardid-reports
+      description: REST surface for manage-projects-projectId-dashboards-dashboardId-reports.
+      operations:
+      - method: GET
+        name: get
+        description: List all reports in a dashboard.
+        call: openpanel-manage.get
+        with:
+          projectId: rest.projectId
+          dashboardId: rest.dashboardId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage/references
+      name: manage-references
+      description: REST surface for manage-references.
+      operations:
+      - method: GET
+        name: get
+        description: List annotation references for a project.
+        call: openpanel-manage.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: post
+        call: openpanel-manage.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/manage/references/{id}
+      name: manage-references-id
+      description: REST surface for manage-references-id.
+      operations:
+      - method: GET
+        name: get
+        description: Get a single annotation reference by ID.
+        call: openpanel-manage.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: patch
+        call: openpanel-manage.patch
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: delete
+        call: openpanel-manage.delete
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openpanel-manage-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenPanel API — Manage. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-all-api-clients-organization
+      description: List all API clients for the organization, optionally filtered by project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-api-client-read
+      description: Create a new API client (read, write, or root type) and return its generated secret.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openpanel-manage.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-api-client-id
+      description: Get a single API client by ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-api-client-name
+      description: Update an API client name.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.patch
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-api-client
+      description: Delete an API client.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: openpanel-manage.delete
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-projects-organization
+      description: List all projects for the organization.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-project-and-its
+      description: Create a new project and its first write client.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openpanel-manage.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-project-id
+      description: Get a single project by ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-project-settings-name-domain
+      description: Update project settings (name, domain, CORS, tracking options).
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.patch
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: soft-delete-project-scheduled-removal
+      description: Soft-delete a project (scheduled for removal in 24 hours).
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: openpanel-manage.delete
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-dashboards-project
+      description: List all dashboards for a project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-reports-dashboard
+      description: List all reports in a dashboard.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      with:
+        projectId: tools.projectId
+        dashboardId: tools.dashboardId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-annotation-references-project
+      description: List annotation references for a project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: post
+      description: post
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openpanel-manage.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-annotation-reference-id
+      description: Get a single annotation reference by ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch
+      description: patch
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: openpanel-manage.patch
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete
+      description: delete
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: openpanel-manage.delete
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

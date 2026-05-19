@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenPanel API — Export
+  description: 'OpenPanel API — Export. 2 operations. Lead operation: Export. Self-contained Naftiko capability covering one
+    Openpanel business surface.'
+  tags:
+  - Openpanel
+  - Export
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENPANEL_API_KEY: OPENPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openpanel-export
+    baseUri: ''
+    description: OpenPanel API — Export business capability. Self-contained, no shared references.
+    resources:
+    - name: export-charts
+      path: /export/charts
+      operations:
+      - name: get
+        method: GET
+        description: Export aggregated chart/analytics data for a series of events over a time range.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: breakdowns
+          in: query
+          type: array
+          description: Array of dimensions to break down the data by
+        - name: interval
+          in: query
+          type: string
+          description: The time interval for data aggregation (e.g., day, week, month)
+        - name: range
+          in: query
+          type: string
+          description: The time range for which data should be displayed
+        - name: previous
+          in: query
+          type: boolean
+          description: Whether to show data from the previous period for comparison
+        - name: startDate
+          in: query
+          type: string
+          description: Custom start date for the data range (overrides range if provided)
+        - name: endDate
+          in: query
+          type: string
+          description: Custom end date for the data range (overrides range if provided)
+        - name: project_id
+          in: query
+          type: string
+        - name: projectId
+          in: query
+          type: string
+        - name: series
+          in: query
+          type: array
+        - name: events
+          in: query
+          type: array
+    - name: export-events
+      path: /export/events
+      operations:
+      - name: get
+        method: GET
+        description: Export a paginated list of raw events with optional filtering by date, profile, and event type.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: project_id
+          in: query
+          type: string
+        - name: projectId
+          in: query
+          type: string
+        - name: profileId
+          in: query
+          type: string
+        - name: event
+          in: query
+          type: string
+        - name: start
+          in: query
+          type: string
+        - name: end
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: includes
+          in: query
+          type: array
+  exposes:
+  - type: rest
+    namespace: openpanel-export-rest
+    port: 8080
+    description: REST adapter for OpenPanel API — Export. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/export/charts
+      name: export-charts
+      description: REST surface for export-charts.
+      operations:
+      - method: GET
+        name: get
+        description: Export aggregated chart/analytics data for a series of events over a time range.
+        call: openpanel-export.get
+        with:
+          breakdowns: rest.breakdowns
+          interval: rest.interval
+          range: rest.range
+          previous: rest.previous
+          startDate: rest.startDate
+          endDate: rest.endDate
+          project_id: rest.project_id
+          projectId: rest.projectId
+          series: rest.series
+          events: rest.events
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/export/events
+      name: export-events
+      description: REST surface for export-events.
+      operations:
+      - method: GET
+        name: get
+        description: Export a paginated list of raw events with optional filtering by date, profile, and event type.
+        call: openpanel-export.get
+        with:
+          project_id: rest.project_id
+          projectId: rest.projectId
+          profileId: rest.profileId
+          event: rest.event
+          start: rest.start
+          end: rest.end
+          page: rest.page
+          limit: rest.limit
+          includes: rest.includes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openpanel-export-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenPanel API — Export. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: export-aggregated-chart-analytics-data
+      description: Export aggregated chart/analytics data for a series of events over a time range.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-export.get
+      with:
+        breakdowns: tools.breakdowns
+        interval: tools.interval
+        range: tools.range
+        previous: tools.previous
+        startDate: tools.startDate
+        endDate: tools.endDate
+        project_id: tools.project_id
+        projectId: tools.projectId
+        series: tools.series
+        events: tools.events
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: export-paginated-list-raw-events
+      description: Export a paginated list of raw events with optional filtering by date, profile, and event type.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-export.get
+      with:
+        project_id: tools.project_id
+        projectId: tools.projectId
+        profileId: tools.profileId
+        event: tools.event
+        start: tools.start
+        end: tools.end
+        page: tools.page
+        limit: tools.limit
+        includes: tools.includes
+      outputParameters:
+      - type: object
+        mapping: $.

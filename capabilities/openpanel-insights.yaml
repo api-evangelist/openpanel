@@ -1,0 +1,3485 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenPanel API — Insights
+  description: 'OpenPanel API — Insights. 54 operations. Lead operation: Insights. Self-contained Naftiko capability covering
+    one Openpanel business surface.'
+  tags:
+  - Openpanel
+  - Insights
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENPANEL_API_KEY: OPENPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openpanel-insights
+    baseUri: ''
+    description: OpenPanel API — Insights business capability. Self-contained, no shared references.
+    resources:
+    - name: insights-projectId-active_users
+      path: /insights/{projectId}/active_users
+      operations:
+      - name: get
+        method: GET
+        description: Get rolling active user counts over the last N days.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: days
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-brand
+      path: /insights/{projectId}/brand
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "brand" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-browser
+      path: /insights/{projectId}/browser
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "browser" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-browser_version
+      path: /insights/{projectId}/browser_version
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "browser_version" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-city
+      path: /insights/{projectId}/city
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "city" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-country
+      path: /insights/{projectId}/country
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "country" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-device
+      path: /insights/{projectId}/device
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "device" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-engagement
+      path: /insights/{projectId}/engagement
+      operations:
+      - name: get
+        method: GET
+        description: Get engagement metrics for the project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-events
+      path: /insights/{projectId}/events
+      operations:
+      - name: get
+        method: GET
+        description: Query events with optional filters for date range, profile, and properties.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: eventNames
+          in: query
+          type: string
+        - name: path
+          in: query
+          type: string
+        - name: country
+          in: query
+          type: string
+        - name: city
+          in: query
+          type: string
+        - name: device
+          in: query
+          type: string
+        - name: browser
+          in: query
+          type: string
+        - name: os
+          in: query
+          type: string
+        - name: referrer
+          in: query
+          type: string
+        - name: referrerName
+          in: query
+          type: string
+        - name: referrerType
+          in: query
+          type: string
+        - name: profileId
+          in: query
+          type: string
+        - name: properties
+          in: query
+          type: object
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-events-names
+      path: /insights/{projectId}/events/names
+      operations:
+      - name: get
+        method: GET
+        description: List all distinct event names tracked in the project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-events-properties
+      path: /insights/{projectId}/events/properties
+      operations:
+      - name: get
+        method: GET
+        description: List all property keys for a given event name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventName
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-events-property_values
+      path: /insights/{projectId}/events/property_values
+      operations:
+      - name: get
+        method: GET
+        description: Get the top values for a specific event property key.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventName
+          in: query
+          type: string
+          required: true
+        - name: propertyKey
+          in: query
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-funnel
+      path: /insights/{projectId}/funnel
+      operations:
+      - name: get
+        method: GET
+        description: Get funnel conversion rates for a sequence of events.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: steps
+          in: query
+          type: string
+          required: true
+        - name: windowHours
+          in: query
+          type: integer
+        - name: groupBy
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-groups
+      path: /insights/{projectId}/groups
+      operations:
+      - name: get
+        method: GET
+        description: Search and filter groups.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+        - name: search
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-groups-types
+      path: /insights/{projectId}/groups/types
+      operations:
+      - name: get
+        method: GET
+        description: List all group types defined in the project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-groups-groupId
+      path: /insights/{projectId}/groups/{groupId}
+      operations:
+      - name: get
+        method: GET
+        description: Get a single group with its members.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: memberLimit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: groupId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-gsc-cannibalization
+      path: /insights/{projectId}/gsc/cannibalization
+      operations:
+      - name: get
+        method: GET
+        description: Detect keyword cannibalization across pages in Google Search Console.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-gsc-overview
+      path: /insights/{projectId}/gsc/overview
+      operations:
+      - name: get
+        method: GET
+        description: Get a Google Search Console performance overview (clicks, impressions, CTR, position).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: interval
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-gsc-pages
+      path: /insights/{projectId}/gsc/pages
+      operations:
+      - name: get
+        method: GET
+        description: Get top pages from Google Search Console.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-gsc-pages-details
+      path: /insights/{projectId}/gsc/pages/details
+      operations:
+      - name: get
+        method: GET
+        description: Get detailed GSC metrics for a specific page URL.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-gsc-queries
+      path: /insights/{projectId}/gsc/queries
+      operations:
+      - name: get
+        method: GET
+        description: Get top search queries from Google Search Console.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-gsc-queries-details
+      path: /insights/{projectId}/gsc/queries/details
+      operations:
+      - name: get
+        method: GET
+        description: Get detailed GSC metrics for a specific search query.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: query
+          in: query
+          type: string
+          required: true
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-gsc-queries-opportunities
+      path: /insights/{projectId}/gsc/queries/opportunities
+      operations:
+      - name: get
+        method: GET
+        description: Get GSC query opportunities (high impressions, low CTR).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: minImpressions
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-live
+      path: /insights/{projectId}/live
+      operations:
+      - name: get
+        method: GET
+        description: Get the current number of live (active) visitors.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-metrics
+      path: /insights/{projectId}/metrics
+      operations:
+      - name: get
+        method: GET
+        description: Get aggregated website metrics including sessions, pageviews, and bounce rate.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: filters
+          in: query
+          type: array
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-model
+      path: /insights/{projectId}/model
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "model" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-os
+      path: /insights/{projectId}/os
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "os" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-os_version
+      path: /insights/{projectId}/os_version
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "os_version" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-overview
+      path: /insights/{projectId}/overview
+      operations:
+      - name: get
+        method: GET
+        description: Get an overview of key metrics for the project (sessions, pageviews, bounce rate, duration).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: interval
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-pages
+      path: /insights/{projectId}/pages
+      operations:
+      - name: get
+        method: GET
+        description: Get top pages with pageview counts for the selected date range.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-pages-entry_exit
+      path: /insights/{projectId}/pages/entry_exit
+      operations:
+      - name: get
+        method: GET
+        description: Get entry or exit pages ranked by session count.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: mode
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-pages-performance
+      path: /insights/{projectId}/pages/performance
+      operations:
+      - name: get
+        method: GET
+        description: Get page-level performance metrics (bounce rate, avg duration, sessions).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: search
+          in: query
+          type: string
+        - name: sortBy
+          in: query
+          type: string
+        - name: sortOrder
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-pages-top
+      path: /insights/{projectId}/pages/top
+      operations:
+      - name: get
+        method: GET
+        description: Get the top pages by pageviews for the given date range.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-profiles
+      path: /insights/{projectId}/profiles
+      operations:
+      - name: get
+        method: GET
+        description: Search and filter user profiles.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+        - name: email
+          in: query
+          type: string
+        - name: country
+          in: query
+          type: string
+        - name: city
+          in: query
+          type: string
+        - name: device
+          in: query
+          type: string
+        - name: browser
+          in: query
+          type: string
+        - name: inactiveDays
+          in: query
+          type: integer
+        - name: minSessions
+          in: query
+          type: integer
+        - name: performedEvent
+          in: query
+          type: string
+        - name: sortOrder
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-profiles-profileId
+      path: /insights/{projectId}/profiles/{profileId}
+      operations:
+      - name: get
+        method: GET
+        description: Get a single user profile with their recent events.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventLimit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: profileId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-profiles-profileId-metrics
+      path: /insights/{projectId}/profiles/{profileId}/metrics
+      operations:
+      - name: get
+        method: GET
+        description: Get aggregated metrics for a specific user profile.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: profileId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-profiles-profileId-sessions
+      path: /insights/{projectId}/profiles/{profileId}/sessions
+      operations:
+      - name: get
+        method: GET
+        description: Get sessions for a specific user profile.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: profileId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-referrer
+      path: /insights/{projectId}/referrer
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "referrer" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-referrer_name
+      path: /insights/{projectId}/referrer_name
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "referrer_name" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-referrer_type
+      path: /insights/{projectId}/referrer_type
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "referrer_type" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-region
+      path: /insights/{projectId}/region
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "region" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-reports-reportId-data
+      path: /insights/{projectId}/reports/{reportId}/data
+      operations:
+      - name: get
+        method: GET
+        description: Get the data for a saved report.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+        - name: reportId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-retention
+      path: /insights/{projectId}/retention
+      operations:
+      - name: get
+        method: GET
+        description: Get weekly retention series data.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-retention-cohort
+      path: /insights/{projectId}/retention/cohort
+      operations:
+      - name: get
+        method: GET
+        description: Get retention cohort data.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-sessions
+      path: /insights/{projectId}/sessions
+      operations:
+      - name: get
+        method: GET
+        description: Query sessions with optional filters.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: country
+          in: query
+          type: string
+        - name: city
+          in: query
+          type: string
+        - name: device
+          in: query
+          type: string
+        - name: browser
+          in: query
+          type: string
+        - name: os
+          in: query
+          type: string
+        - name: referrer
+          in: query
+          type: string
+        - name: referrerName
+          in: query
+          type: string
+        - name: referrerType
+          in: query
+          type: string
+        - name: profileId
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-traffic-devices
+      path: /insights/{projectId}/traffic/devices
+      operations:
+      - name: get
+        method: GET
+        description: Get traffic breakdown by device type, browser, or OS.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: breakdown
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-traffic-geo
+      path: /insights/{projectId}/traffic/geo
+      operations:
+      - name: get
+        method: GET
+        description: Get traffic breakdown by geographic dimension (country, region, city).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: breakdown
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-traffic-referrers
+      path: /insights/{projectId}/traffic/referrers
+      operations:
+      - name: get
+        method: GET
+        description: Get traffic breakdown by referrer source.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: breakdown
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-user_flow
+      path: /insights/{projectId}/user_flow
+      operations:
+      - name: get
+        method: GET
+        description: Get user flow paths before, after, or between specified events.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: startEvent
+          in: query
+          type: string
+          required: true
+        - name: endEvent
+          in: query
+          type: string
+        - name: mode
+          in: query
+          type: string
+        - name: steps
+          in: query
+          type: integer
+        - name: exclude
+          in: query
+          type: string
+        - name: include
+          in: query
+          type: string
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-utm_campaign
+      path: /insights/{projectId}/utm_campaign
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "utm_campaign" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-utm_content
+      path: /insights/{projectId}/utm_content
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "utm_content" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-utm_medium
+      path: /insights/{projectId}/utm_medium
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "utm_medium" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-utm_source
+      path: /insights/{projectId}/utm_source
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "utm_source" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+    - name: insights-projectId-utm_term
+      path: /insights/{projectId}/utm_term
+      operations:
+      - name: get
+        method: GET
+        description: Get top values for the "utm_term" dimension.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filters
+          in: query
+          type: array
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: range
+          in: query
+          type: string
+        - name: cursor
+          in: query
+          type: number
+        - name: limit
+          in: query
+          type: number
+        - name: projectId
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: openpanel-insights-rest
+    port: 8080
+    description: REST adapter for OpenPanel API — Insights. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/insights/{projectid}/active-users
+      name: insights-projectid-active-users
+      description: REST surface for insights-projectId-active_users.
+      operations:
+      - method: GET
+        name: get
+        description: Get rolling active user counts over the last N days.
+        call: openpanel-insights.get
+        with:
+          days: rest.days
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/brand
+      name: insights-projectid-brand
+      description: REST surface for insights-projectId-brand.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "brand" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/browser
+      name: insights-projectid-browser
+      description: REST surface for insights-projectId-browser.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "browser" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/browser-version
+      name: insights-projectid-browser-version
+      description: REST surface for insights-projectId-browser_version.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "browser_version" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/city
+      name: insights-projectid-city
+      description: REST surface for insights-projectId-city.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "city" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/country
+      name: insights-projectid-country
+      description: REST surface for insights-projectId-country.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "country" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/device
+      name: insights-projectid-device
+      description: REST surface for insights-projectId-device.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "device" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/engagement
+      name: insights-projectid-engagement
+      description: REST surface for insights-projectId-engagement.
+      operations:
+      - method: GET
+        name: get
+        description: Get engagement metrics for the project.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/events
+      name: insights-projectid-events
+      description: REST surface for insights-projectId-events.
+      operations:
+      - method: GET
+        name: get
+        description: Query events with optional filters for date range, profile, and properties.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          eventNames: rest.eventNames
+          path: rest.path
+          country: rest.country
+          city: rest.city
+          device: rest.device
+          browser: rest.browser
+          os: rest.os
+          referrer: rest.referrer
+          referrerName: rest.referrerName
+          referrerType: rest.referrerType
+          profileId: rest.profileId
+          properties: rest.properties
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/events/names
+      name: insights-projectid-events-names
+      description: REST surface for insights-projectId-events-names.
+      operations:
+      - method: GET
+        name: get
+        description: List all distinct event names tracked in the project.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/events/properties
+      name: insights-projectid-events-properties
+      description: REST surface for insights-projectId-events-properties.
+      operations:
+      - method: GET
+        name: get
+        description: List all property keys for a given event name.
+        call: openpanel-insights.get
+        with:
+          eventName: rest.eventName
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/events/property-values
+      name: insights-projectid-events-property-values
+      description: REST surface for insights-projectId-events-property_values.
+      operations:
+      - method: GET
+        name: get
+        description: Get the top values for a specific event property key.
+        call: openpanel-insights.get
+        with:
+          eventName: rest.eventName
+          propertyKey: rest.propertyKey
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/funnel
+      name: insights-projectid-funnel
+      description: REST surface for insights-projectId-funnel.
+      operations:
+      - method: GET
+        name: get
+        description: Get funnel conversion rates for a sequence of events.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          steps: rest.steps
+          windowHours: rest.windowHours
+          groupBy: rest.groupBy
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/groups
+      name: insights-projectid-groups
+      description: REST surface for insights-projectId-groups.
+      operations:
+      - method: GET
+        name: get
+        description: Search and filter groups.
+        call: openpanel-insights.get
+        with:
+          type: rest.type
+          search: rest.search
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/groups/types
+      name: insights-projectid-groups-types
+      description: REST surface for insights-projectId-groups-types.
+      operations:
+      - method: GET
+        name: get
+        description: List all group types defined in the project.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/groups/{groupid}
+      name: insights-projectid-groups-groupid
+      description: REST surface for insights-projectId-groups-groupId.
+      operations:
+      - method: GET
+        name: get
+        description: Get a single group with its members.
+        call: openpanel-insights.get
+        with:
+          memberLimit: rest.memberLimit
+          projectId: rest.projectId
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/gsc/cannibalization
+      name: insights-projectid-gsc-cannibalization
+      description: REST surface for insights-projectId-gsc-cannibalization.
+      operations:
+      - method: GET
+        name: get
+        description: Detect keyword cannibalization across pages in Google Search Console.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/gsc/overview
+      name: insights-projectid-gsc-overview
+      description: REST surface for insights-projectId-gsc-overview.
+      operations:
+      - method: GET
+        name: get
+        description: Get a Google Search Console performance overview (clicks, impressions, CTR, position).
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          interval: rest.interval
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/gsc/pages
+      name: insights-projectid-gsc-pages
+      description: REST surface for insights-projectId-gsc-pages.
+      operations:
+      - method: GET
+        name: get
+        description: Get top pages from Google Search Console.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/gsc/pages/details
+      name: insights-projectid-gsc-pages-details
+      description: REST surface for insights-projectId-gsc-pages-details.
+      operations:
+      - method: GET
+        name: get
+        description: Get detailed GSC metrics for a specific page URL.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          page: rest.page
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/gsc/queries
+      name: insights-projectid-gsc-queries
+      description: REST surface for insights-projectId-gsc-queries.
+      operations:
+      - method: GET
+        name: get
+        description: Get top search queries from Google Search Console.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/gsc/queries/details
+      name: insights-projectid-gsc-queries-details
+      description: REST surface for insights-projectId-gsc-queries-details.
+      operations:
+      - method: GET
+        name: get
+        description: Get detailed GSC metrics for a specific search query.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          query: rest.query
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/gsc/queries/opportunities
+      name: insights-projectid-gsc-queries-opportunities
+      description: REST surface for insights-projectId-gsc-queries-opportunities.
+      operations:
+      - method: GET
+        name: get
+        description: Get GSC query opportunities (high impressions, low CTR).
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          minImpressions: rest.minImpressions
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/live
+      name: insights-projectid-live
+      description: REST surface for insights-projectId-live.
+      operations:
+      - method: GET
+        name: get
+        description: Get the current number of live (active) visitors.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/metrics
+      name: insights-projectid-metrics
+      description: REST surface for insights-projectId-metrics.
+      operations:
+      - method: GET
+        name: get
+        description: Get aggregated website metrics including sessions, pageviews, and bounce rate.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          filters: rest.filters
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/model
+      name: insights-projectid-model
+      description: REST surface for insights-projectId-model.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "model" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/os
+      name: insights-projectid-os
+      description: REST surface for insights-projectId-os.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "os" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/os-version
+      name: insights-projectid-os-version
+      description: REST surface for insights-projectId-os_version.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "os_version" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/overview
+      name: insights-projectid-overview
+      description: REST surface for insights-projectId-overview.
+      operations:
+      - method: GET
+        name: get
+        description: Get an overview of key metrics for the project (sessions, pageviews, bounce rate, duration).
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          interval: rest.interval
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/pages
+      name: insights-projectid-pages
+      description: REST surface for insights-projectId-pages.
+      operations:
+      - method: GET
+        name: get
+        description: Get top pages with pageview counts for the selected date range.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/pages/entry-exit
+      name: insights-projectid-pages-entry-exit
+      description: REST surface for insights-projectId-pages-entry_exit.
+      operations:
+      - method: GET
+        name: get
+        description: Get entry or exit pages ranked by session count.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          mode: rest.mode
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/pages/performance
+      name: insights-projectid-pages-performance
+      description: REST surface for insights-projectId-pages-performance.
+      operations:
+      - method: GET
+        name: get
+        description: Get page-level performance metrics (bounce rate, avg duration, sessions).
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          search: rest.search
+          sortBy: rest.sortBy
+          sortOrder: rest.sortOrder
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/pages/top
+      name: insights-projectid-pages-top
+      description: REST surface for insights-projectId-pages-top.
+      operations:
+      - method: GET
+        name: get
+        description: Get the top pages by pageviews for the given date range.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/profiles
+      name: insights-projectid-profiles
+      description: REST surface for insights-projectId-profiles.
+      operations:
+      - method: GET
+        name: get
+        description: Search and filter user profiles.
+        call: openpanel-insights.get
+        with:
+          name: rest.name
+          email: rest.email
+          country: rest.country
+          city: rest.city
+          device: rest.device
+          browser: rest.browser
+          inactiveDays: rest.inactiveDays
+          minSessions: rest.minSessions
+          performedEvent: rest.performedEvent
+          sortOrder: rest.sortOrder
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/profiles/{profileid}
+      name: insights-projectid-profiles-profileid
+      description: REST surface for insights-projectId-profiles-profileId.
+      operations:
+      - method: GET
+        name: get
+        description: Get a single user profile with their recent events.
+        call: openpanel-insights.get
+        with:
+          eventLimit: rest.eventLimit
+          projectId: rest.projectId
+          profileId: rest.profileId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/profiles/{profileid}/metrics
+      name: insights-projectid-profiles-profileid-metrics
+      description: REST surface for insights-projectId-profiles-profileId-metrics.
+      operations:
+      - method: GET
+        name: get
+        description: Get aggregated metrics for a specific user profile.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+          profileId: rest.profileId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/profiles/{profileid}/sessions
+      name: insights-projectid-profiles-profileid-sessions
+      description: REST surface for insights-projectId-profiles-profileId-sessions.
+      operations:
+      - method: GET
+        name: get
+        description: Get sessions for a specific user profile.
+        call: openpanel-insights.get
+        with:
+          limit: rest.limit
+          projectId: rest.projectId
+          profileId: rest.profileId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/referrer
+      name: insights-projectid-referrer
+      description: REST surface for insights-projectId-referrer.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "referrer" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/referrer-name
+      name: insights-projectid-referrer-name
+      description: REST surface for insights-projectId-referrer_name.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "referrer_name" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/referrer-type
+      name: insights-projectid-referrer-type
+      description: REST surface for insights-projectId-referrer_type.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "referrer_type" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/region
+      name: insights-projectid-region
+      description: REST surface for insights-projectId-region.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "region" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/reports/{reportid}/data
+      name: insights-projectid-reports-reportid-data
+      description: REST surface for insights-projectId-reports-reportId-data.
+      operations:
+      - method: GET
+        name: get
+        description: Get the data for a saved report.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+          reportId: rest.reportId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/retention
+      name: insights-projectid-retention
+      description: REST surface for insights-projectId-retention.
+      operations:
+      - method: GET
+        name: get
+        description: Get weekly retention series data.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/retention/cohort
+      name: insights-projectid-retention-cohort
+      description: REST surface for insights-projectId-retention-cohort.
+      operations:
+      - method: GET
+        name: get
+        description: Get retention cohort data.
+        call: openpanel-insights.get
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/sessions
+      name: insights-projectid-sessions
+      description: REST surface for insights-projectId-sessions.
+      operations:
+      - method: GET
+        name: get
+        description: Query sessions with optional filters.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          country: rest.country
+          city: rest.city
+          device: rest.device
+          browser: rest.browser
+          os: rest.os
+          referrer: rest.referrer
+          referrerName: rest.referrerName
+          referrerType: rest.referrerType
+          profileId: rest.profileId
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/traffic/devices
+      name: insights-projectid-traffic-devices
+      description: REST surface for insights-projectId-traffic-devices.
+      operations:
+      - method: GET
+        name: get
+        description: Get traffic breakdown by device type, browser, or OS.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          breakdown: rest.breakdown
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/traffic/geo
+      name: insights-projectid-traffic-geo
+      description: REST surface for insights-projectId-traffic-geo.
+      operations:
+      - method: GET
+        name: get
+        description: Get traffic breakdown by geographic dimension (country, region, city).
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          breakdown: rest.breakdown
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/traffic/referrers
+      name: insights-projectid-traffic-referrers
+      description: REST surface for insights-projectId-traffic-referrers.
+      operations:
+      - method: GET
+        name: get
+        description: Get traffic breakdown by referrer source.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          breakdown: rest.breakdown
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/user-flow
+      name: insights-projectid-user-flow
+      description: REST surface for insights-projectId-user_flow.
+      operations:
+      - method: GET
+        name: get
+        description: Get user flow paths before, after, or between specified events.
+        call: openpanel-insights.get
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          startEvent: rest.startEvent
+          endEvent: rest.endEvent
+          mode: rest.mode
+          steps: rest.steps
+          exclude: rest.exclude
+          include: rest.include
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/utm-campaign
+      name: insights-projectid-utm-campaign
+      description: REST surface for insights-projectId-utm_campaign.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "utm_campaign" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/utm-content
+      name: insights-projectid-utm-content
+      description: REST surface for insights-projectId-utm_content.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "utm_content" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/utm-medium
+      name: insights-projectid-utm-medium
+      description: REST surface for insights-projectId-utm_medium.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "utm_medium" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/utm-source
+      name: insights-projectid-utm-source
+      description: REST surface for insights-projectId-utm_source.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "utm_source" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{projectid}/utm-term
+      name: insights-projectid-utm-term
+      description: REST surface for insights-projectId-utm_term.
+      operations:
+      - method: GET
+        name: get
+        description: Get top values for the "utm_term" dimension.
+        call: openpanel-insights.get
+        with:
+          filters: rest.filters
+          startDate: rest.startDate
+          endDate: rest.endDate
+          range: rest.range
+          cursor: rest.cursor
+          limit: rest.limit
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openpanel-insights-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenPanel API — Insights. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-rolling-active-user-counts
+      description: Get rolling active user counts over the last N days.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        days: tools.days
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-brand-dimension
+      description: Get top values for the "brand" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-browser-dimension
+      description: Get top values for the "browser" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-browser-version
+      description: Get top values for the "browser_version" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-city-dimension
+      description: Get top values for the "city" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-country-dimension
+      description: Get top values for the "country" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-device-dimension
+      description: Get top values for the "device" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-engagement-metrics-project
+      description: Get engagement metrics for the project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-events-optional-filters-date
+      description: Query events with optional filters for date range, profile, and properties.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        eventNames: tools.eventNames
+        path: tools.path
+        country: tools.country
+        city: tools.city
+        device: tools.device
+        browser: tools.browser
+        os: tools.os
+        referrer: tools.referrer
+        referrerName: tools.referrerName
+        referrerType: tools.referrerType
+        profileId: tools.profileId
+        properties: tools.properties
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-distinct-event-names
+      description: List all distinct event names tracked in the project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-property-keys-given
+      description: List all property keys for a given event name.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        eventName: tools.eventName
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-specific-event
+      description: Get the top values for a specific event property key.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        eventName: tools.eventName
+        propertyKey: tools.propertyKey
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-funnel-conversion-rates-sequence
+      description: Get funnel conversion rates for a sequence of events.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        steps: tools.steps
+        windowHours: tools.windowHours
+        groupBy: tools.groupBy
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-and-filter-groups
+      description: Search and filter groups.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        type: tools.type
+        search: tools.search
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-group-types-defined
+      description: List all group types defined in the project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-group-its-members
+      description: Get a single group with its members.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        memberLimit: tools.memberLimit
+        projectId: tools.projectId
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: detect-keyword-cannibalization-across-pages
+      description: Detect keyword cannibalization across pages in Google Search Console.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-google-search-console-performance
+      description: Get a Google Search Console performance overview (clicks, impressions, CTR, position).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        interval: tools.interval
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-pages-google-search
+      description: Get top pages from Google Search Console.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-detailed-gsc-metrics-specific
+      description: Get detailed GSC metrics for a specific page URL.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        page: tools.page
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-search-queries-google
+      description: Get top search queries from Google Search Console.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-detailed-gsc-metrics-specific-2
+      description: Get detailed GSC metrics for a specific search query.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        query: tools.query
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-gsc-query-opportunities-high
+      description: Get GSC query opportunities (high impressions, low CTR).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        minImpressions: tools.minImpressions
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-current-number-live-active
+      description: Get the current number of live (active) visitors.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-aggregated-website-metrics-including
+      description: Get aggregated website metrics including sessions, pageviews, and bounce rate.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        filters: tools.filters
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-model-dimension
+      description: Get top values for the "model" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-os-dimension
+      description: Get top values for the "os" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-os-version
+      description: Get top values for the "os_version" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-overview-key-metrics-project
+      description: Get an overview of key metrics for the project (sessions, pageviews, bounce rate, duration).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        interval: tools.interval
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-pages-pageview-counts
+      description: Get top pages with pageview counts for the selected date range.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-entry-exit-pages-ranked
+      description: Get entry or exit pages ranked by session count.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        mode: tools.mode
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-page-level-performance-metrics
+      description: Get page-level performance metrics (bounce rate, avg duration, sessions).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        search: tools.search
+        sortBy: tools.sortBy
+        sortOrder: tools.sortOrder
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-pages-pageviews-given
+      description: Get the top pages by pageviews for the given date range.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-and-filter-user-profiles
+      description: Search and filter user profiles.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        name: tools.name
+        email: tools.email
+        country: tools.country
+        city: tools.city
+        device: tools.device
+        browser: tools.browser
+        inactiveDays: tools.inactiveDays
+        minSessions: tools.minSessions
+        performedEvent: tools.performedEvent
+        sortOrder: tools.sortOrder
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-user-profile-their
+      description: Get a single user profile with their recent events.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        eventLimit: tools.eventLimit
+        projectId: tools.projectId
+        profileId: tools.profileId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-aggregated-metrics-specific-user
+      description: Get aggregated metrics for a specific user profile.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+        profileId: tools.profileId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sessions-specific-user-profile
+      description: Get sessions for a specific user profile.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        limit: tools.limit
+        projectId: tools.projectId
+        profileId: tools.profileId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-referrer-dimension
+      description: Get top values for the "referrer" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-referrer-name
+      description: Get top values for the "referrer_name" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-referrer-type
+      description: Get top values for the "referrer_type" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-region-dimension
+      description: Get top values for the "region" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-saved-report
+      description: Get the data for a saved report.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+        reportId: tools.reportId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-weekly-retention-series-data
+      description: Get weekly retention series data.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-retention-cohort-data
+      description: Get retention cohort data.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-sessions-optional-filters
+      description: Query sessions with optional filters.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        country: tools.country
+        city: tools.city
+        device: tools.device
+        browser: tools.browser
+        os: tools.os
+        referrer: tools.referrer
+        referrerName: tools.referrerName
+        referrerType: tools.referrerType
+        profileId: tools.profileId
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-traffic-breakdown-device-type
+      description: Get traffic breakdown by device type, browser, or OS.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        breakdown: tools.breakdown
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-traffic-breakdown-geographic-dimension
+      description: Get traffic breakdown by geographic dimension (country, region, city).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        breakdown: tools.breakdown
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-traffic-breakdown-referrer-source
+      description: Get traffic breakdown by referrer source.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        breakdown: tools.breakdown
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-flow-paths-before
+      description: Get user flow paths before, after, or between specified events.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        startEvent: tools.startEvent
+        endEvent: tools.endEvent
+        mode: tools.mode
+        steps: tools.steps
+        exclude: tools.exclude
+        include: tools.include
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-utm-campaign
+      description: Get top values for the "utm_campaign" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-utm-content
+      description: Get top values for the "utm_content" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-utm-medium
+      description: Get top values for the "utm_medium" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-utm-source
+      description: Get top values for the "utm_source" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-top-values-utm-term
+      description: Get top values for the "utm_term" dimension.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: openpanel-insights.get
+      with:
+        filters: tools.filters
+        startDate: tools.startDate
+        endDate: tools.endDate
+        range: tools.range
+        cursor: tools.cursor
+        limit: tools.limit
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.

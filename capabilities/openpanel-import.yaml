@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenPanel API — Import
+  description: 'OpenPanel API — Import. 1 operations. Lead operation: Import. Self-contained Naftiko capability covering one
+    Openpanel business surface.'
+  tags:
+  - Openpanel
+  - Import
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OPENPANEL_API_KEY: OPENPANEL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: openpanel-import
+    baseUri: ''
+    description: OpenPanel API — Import business capability. Self-contained, no shared references.
+    resources:
+    - name: import-events
+      path: /import/events
+      operations:
+      - name: post
+        method: POST
+        description: Bulk import historical events.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: openpanel-import-rest
+    port: 8080
+    description: REST adapter for OpenPanel API — Import. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/import/events
+      name: import-events
+      description: REST surface for import-events.
+      operations:
+      - method: POST
+        name: post
+        description: Bulk import historical events.
+        call: openpanel-import.post
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: openpanel-import-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenPanel API — Import. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: bulk-import-historical-events
+      description: Bulk import historical events.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: openpanel-import.post
+      outputParameters:
+      - type: object
+        mapping: $.
