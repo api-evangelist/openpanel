@@ -2,12 +2,11 @@
 
 OpenPanel is an open source product analytics platform that provides event tracking, user journey analysis, real-time dashboards, and funnel analysis, offering a privacy-friendly alternative to tools like Mixpanel and Amplitude.
 
-**APIs.json:** [apis.yml](https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml)
 
 ## Scope
 
 - **Type:** Index
-- **Specification Version:** 0.19
 
 ## Tags
 
@@ -21,7 +20,7 @@ OpenPanel is an open source product analytics platform that provides event track
 ## Timestamps
 
 - **Created:** 2026-03-26
-- **Modified:** 2026-04-28
+- **Modified:** 2026-05-19
 
 ## APIs
 
@@ -29,16 +28,8 @@ OpenPanel is an open source product analytics platform that provides event track
 
 The OpenPanel API allows developers to track events, manage projects, retrieve analytics data, and integrate OpenPanel product analytics into applications and workflows programmatically.
 
-- **Human URL:** https://openpanel.dev
-- **Base URL:** https://api.openpanel.dev
-
-#### Properties
-
-- [Documentation](https://openpanel.dev/docs)
-- [GettingStarted](https://openpanel.dev/docs/getting-started)
-- [GitHubOrg](https://github.com/Openpanel-dev/openpanel)
-- [SDKs](https://openpanel.dev/docs/sdks)
-- [OpenAPI](openapi/openpanel-openapi.yml)
+- **Human URL:** [https://openpanel.dev](https://openpanel.dev)
+- **Base URL:** `https://api.openpanel.dev`
 
 #### Tags
 
@@ -47,17 +38,29 @@ The OpenPanel API allows developers to track events, manage projects, retrieve a
 - Product Analytics
 - User Analytics
 
-## Common
+#### Properties
 
+- [Documentation](https://openpanel.dev/docs)
+- [Getting Started](https://openpanel.dev/docs/getting-started)
+- [Git Hub Org](https://github.com/Openpanel-dev/openpanel)
+- [S D Ks](https://openpanel.dev/docs/sdks)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/openapi/openpanel-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/openpanel.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/openpanel.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [LinkedIn](https://www.linkedin.com/company/openpanel)
 - [Website](https://openpanel.dev)
 - [Documentation](https://openpanel.dev/docs)
-- [GitHub](https://github.com/Openpanel-dev/openpanel)
-- [GettingStarted](https://openpanel.dev/docs/getting-started)
+- [Git Hub](https://github.com/Openpanel-dev/openpanel)
+- [Getting Started](https://openpanel.dev/docs/getting-started)
 - [Blog](https://openpanel.dev/blog)
-- [SelfHosting](https://openpanel.dev/docs/self-hosting)
+- [Self Hosting](https://openpanel.dev/docs/self-hosting)
 - [Login](https://dashboard.openpanel.dev)
+- [L L Ms Txt](https://openpanel.dev/llms.txt)
 
 ## Maintainers
 
-- **FN:** Kin Lane
-- **Email:** kin@apievangelist.com
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
