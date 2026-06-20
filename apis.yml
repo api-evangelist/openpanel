@@ -4,7 +4,7 @@ description: >-
   OpenPanel is an open source product analytics platform that provides event tracking, user journey analysis, real-time
   dashboards, and funnel analysis, offering a privacy-friendly alternative to tools like Mixpanel and Amplitude.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Event Tracking
   - Funnels
