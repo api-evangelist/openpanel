@@ -57,7 +57,7 @@ common:
     url: https://openpanel.dev/docs/self-hosting
   - type: Login
     url: https://dashboard.openpanel.dev
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://openpanel.dev/llms.txt
 maintainers:
   - FN: Kin Lane
