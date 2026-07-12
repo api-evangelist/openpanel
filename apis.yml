@@ -41,6 +41,10 @@ apis:
       - Product Analytics
       - User Analytics
 common:
+  - type: VulnerabilityDisclosure
+    url: security/openpanel-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/openpanel-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/openpanel
   - type: Website
