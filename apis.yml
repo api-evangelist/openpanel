@@ -41,6 +41,8 @@ apis:
       - Product Analytics
       - User Analytics
 common:
+  - type: AgenticAccess
+    url: agentic-access/openpanel-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/openpanel-vulnerability-disclosure.yml
   - type: DomainSecurity
