@@ -1,0 +1,310 @@
+openapi: 3.1.0
+info:
+  title: OpenPanel Event Export API
+  version: 1.0.0
+  description: Legacy event ingestion (deprecated, use /track)
+tags:
+- name: Export
+  description: Export data
+paths:
+  /export/events:
+    get:
+      tags:
+      - Export
+      description: Export a paginated list of raw events with optional filtering by date, profile, and event type.
+      parameters:
+      - schema:
+          type: string
+        in: query
+        name: project_id
+      - schema:
+          type: string
+        in: query
+        name: projectId
+      - schema:
+          type: string
+        in: query
+        name: profileId
+      - schema:
+          anyOf:
+          - type: string
+          - type: array
+            items:
+              type: string
+        in: query
+        name: event
+      - schema:
+          type: string
+        in: query
+        name: start
+      - schema:
+          type: string
+        in: query
+        name: end
+      - schema:
+          default: 1
+          type: number
+        in: query
+        name: page
+      - schema:
+          default: 50
+          type: number
+        in: query
+        name: limit
+      - schema:
+          type: array
+          items:
+            type: string
+        in: query
+        name: includes
+      responses:
+        '200':
+          description: Default Response
+  /export/charts:
+    get:
+      tags:
+      - Export
+      description: Export aggregated chart/analytics data for a series of events over a time range.
+      parameters:
+      - schema:
+          default: []
+          description: Array of dimensions to break down the data by
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+            required:
+            - name
+        in: query
+        name: breakdowns
+        description: Array of dimensions to break down the data by
+      - schema:
+          default: day
+          description: The time interval for data aggregation (e.g., day, week, month)
+          type: string
+          enum:
+          - minute
+          - day
+          - hour
+          - week
+          - month
+        in: query
+        name: interval
+        description: The time interval for data aggregation (e.g., day, week, month)
+      - schema:
+          default: 30d
+          description: The time range for which data should be displayed
+          type: string
+          enum:
+          - 30min
+          - lastHour
+          - today
+          - yesterday
+          - 7d
+          - 30d
+          - 6m
+          - 12m
+          - monthToDate
+          - lastMonth
+          - yearToDate
+          - lastYear
+          - custom
+        in: query
+        name: range
+        description: The time range for which data should be displayed
+      - schema:
+          default: false
+          description: Whether to show data from the previous period for comparison
+          type: boolean
+        in: query
+        name: previous
+        description: Whether to show data from the previous period for comparison
+      - schema:
+          description: Custom start date for the data range (overrides range if provided)
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: startDate
+        description: Custom start date for the data range (overrides range if provided)
+      - schema:
+          description: Custom end date for the data range (overrides range if provided)
+          anyOf:
+          - type: string
+          - type: 'null'
+        in: query
+        name: endDate
+        description: Custom end date for the data range (overrides range if provided)
+      - schema:
+          type: string
+        in: query
+        name: project_id
+      - schema:
+          type: string
+        in: query
+        name: projectId
+      - schema:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              filters:
+                default: []
+                description: Filters applied specifically to this event
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: Unique identifier for the filter
+                      type: string
+                    name:
+                      type: string
+                      description: The property name to filter on
+                    operator:
+                      type: string
+                      enum:
+                      - is
+                      - isNot
+                      - contains
+                      - doesNotContain
+                      - startsWith
+                      - endsWith
+                      - regex
+                      - isNull
+                      - isNotNull
+                      - gt
+                      - lt
+                      - gte
+                      - lte
+                      - inCohort
+                      - notInCohort
+                      description: The operator to use for the filter
+                    value:
+                      type: array
+                      items:
+                        anyOf:
+                        - anyOf:
+                          - anyOf:
+                            - type: string
+                            - type: number
+                          - type: boolean
+                        - type: 'null'
+                      description: The values to filter on
+                    cohortId:
+                      description: Cohort ID when using inCohort/notInCohort operators
+                      type: string
+                  required:
+                  - name
+                  - operator
+                  - value
+              segment:
+                default: event
+                description: Defines how the event data should be segmented or aggregated
+                type: string
+                enum:
+                - event
+                - user
+                - session
+                - group
+                - user_average
+                - one_event_per_user
+                - property_sum
+                - property_average
+                - property_max
+                - property_min
+              property:
+                description: Optional property of the event used for specific segment calculations (e.g., value for property_sum/average)
+                type: string
+            required:
+            - name
+        in: query
+        name: series
+      - schema:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              filters:
+                default: []
+                description: Filters applied specifically to this event
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      description: Unique identifier for the filter
+                      type: string
+                    name:
+                      type: string
+                      description: The property name to filter on
+                    operator:
+                      type: string
+                      enum:
+                      - is
+                      - isNot
+                      - contains
+                      - doesNotContain
+                      - startsWith
+                      - endsWith
+                      - regex
+                      - isNull
+                      - isNotNull
+                      - gt
+                      - lt
+                      - gte
+                      - lte
+                      - inCohort
+                      - notInCohort
+                      description: The operator to use for the filter
+                    value:
+                      type: array
+                      items:
+                        anyOf:
+                        - anyOf:
+                          - anyOf:
+                            - type: string
+                            - type: number
+                          - type: boolean
+                        - type: 'null'
+                      description: The values to filter on
+                    cohortId:
+                      description: Cohort ID when using inCohort/notInCohort operators
+                      type: string
+                  required:
+                  - name
+                  - operator
+                  - value
+              segment:
+                default: event
+                description: Defines how the event data should be segmented or aggregated
+                type: string
+                enum:
+                - event
+                - user
+                - session
+                - group
+                - user_average
+                - one_event_per_user
+                - property_sum
+                - property_average
+                - property_max
+                - property_min
+              property:
+                description: Optional property of the event used for specific segment calculations (e.g., value for property_sum/average)
+                type: string
+            required:
+            - name
+        in: query
+        name: events
+      responses:
+        '200':
+          description: Default Response

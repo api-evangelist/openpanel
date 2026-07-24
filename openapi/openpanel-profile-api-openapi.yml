@@ -1,0 +1,33 @@
+openapi: 3.1.0
+info:
+  title: OpenPanel Event Profile API
+  version: 1.0.0
+  description: Legacy event ingestion (deprecated, use /track)
+tags:
+- name: Profile
+  description: Identify and update user profiles
+paths:
+  /profile/:
+    post:
+      tags:
+      - Profile
+      description: Identify or update a user profile.
+      responses:
+        '200':
+          description: Default Response
+  /profile/increment:
+    post:
+      tags:
+      - Profile
+      description: Increment a numeric property on a user profile.
+      responses:
+        '200':
+          description: Default Response
+  /profile/decrement:
+    post:
+      tags:
+      - Profile
+      description: Decrement a numeric property on a user profile.
+      responses:
+        '200':
+          description: Default Response

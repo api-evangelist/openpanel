@@ -1,0 +1,17 @@
+openapi: 3.1.0
+info:
+  title: OpenPanel Event Import API
+  version: 1.0.0
+  description: Legacy event ingestion (deprecated, use /track)
+tags:
+- name: Import
+  description: Import historical data
+paths:
+  /import/events:
+    post:
+      tags:
+      - Import
+      description: Bulk import historical events.
+      responses:
+        '200':
+          description: Default Response

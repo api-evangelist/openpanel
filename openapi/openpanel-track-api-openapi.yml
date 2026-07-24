@@ -1,0 +1,304 @@
+openapi: 3.1.0
+info:
+  title: OpenPanel Event Track API
+  version: 1.0.0
+  description: Legacy event ingestion (deprecated, use /track)
+tags:
+- name: Track
+  description: Track events and sessions
+paths:
+  /track/:
+    post:
+      tags:
+      - Track
+      description: Ingest a tracking event (track, identify, group, increment, decrement, replay).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - track
+                  payload:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      properties:
+                        type: object
+                        propertyNames:
+                          type: string
+                        additionalProperties: {}
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      groups:
+                        type: array
+                        items:
+                          type: string
+                          minLength: 1
+                    required:
+                    - name
+                required:
+                - type
+                - payload
+                title: Track
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - identify
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      firstName:
+                        type: string
+                      lastName:
+                        type: string
+                      email:
+                        type: string
+                        format: email
+                        pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+                      avatar:
+                        type: string
+                        format: uri
+                      properties:
+                        type: object
+                        propertyNames:
+                          type: string
+                        additionalProperties: {}
+                    required:
+                    - profileId
+                required:
+                - type
+                - payload
+                title: Identify
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - increment
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      property:
+                        type: string
+                        minLength: 1
+                      value:
+                        type: number
+                        exclusiveMinimum: 0
+                    required:
+                    - profileId
+                    - property
+                required:
+                - type
+                - payload
+                title: Increment
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - decrement
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      property:
+                        type: string
+                        minLength: 1
+                      value:
+                        type: number
+                        exclusiveMinimum: 0
+                    required:
+                    - profileId
+                    - property
+                required:
+                - type
+                - payload
+                title: Decrement
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - alias
+                  payload:
+                    type: object
+                    properties:
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                      alias:
+                        type: string
+                        minLength: 1
+                    required:
+                    - profileId
+                    - alias
+                required:
+                - type
+                - payload
+                title: Alias
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - replay
+                  payload:
+                    type: object
+                    properties:
+                      chunk_index:
+                        type: integer
+                        minimum: 0
+                        maximum: 65535
+                      events_count:
+                        type: integer
+                        minimum: 1
+                        maximum: 9007199254740991
+                      is_full_snapshot:
+                        type: boolean
+                      started_at:
+                        type: string
+                        format: date-time
+                        pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                      ended_at:
+                        type: string
+                        format: date-time
+                        pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z))$
+                      payload:
+                        type: string
+                        maxLength: 2097152
+                    required:
+                    - chunk_index
+                    - events_count
+                    - is_full_snapshot
+                    - started_at
+                    - ended_at
+                    - payload
+                required:
+                - type
+                - payload
+                title: Replay
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - group
+                  payload:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      type:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      properties:
+                        type: object
+                        propertyNames:
+                          type: string
+                        additionalProperties: {}
+                    required:
+                    - id
+                    - type
+                    - name
+                required:
+                - type
+                - payload
+                title: Group
+              - type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - assign_group
+                  payload:
+                    type: object
+                    properties:
+                      groupIds:
+                        type: array
+                        items:
+                          type: string
+                          minLength: 1
+                      profileId:
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                        - type: number
+                    required:
+                    - groupIds
+                required:
+                - type
+                - payload
+                title: Assign Group
+              type: object
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deviceId:
+                    type: string
+                  sessionId:
+                    type: string
+                required:
+                - deviceId
+                - sessionId
+                additionalProperties: false
+  /track/device-id:
+    get:
+      tags:
+      - Track
+      description: Get or generate a stable device ID and session ID for the current visitor.
+      responses:
+        '200':
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deviceId:
+                    type: string
+                  sessionId:
+                    type: string
+                  message:
+                    type: string
+                required:
+                - deviceId
+                - sessionId
+                additionalProperties: false

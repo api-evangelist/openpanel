@@ -1,0 +1,17 @@
+openapi: 3.1.0
+info:
+  title: OpenPanel Event API
+  version: 1.0.0
+  description: Legacy event ingestion (deprecated, use /track)
+tags:
+- name: Event
+  description: Legacy event ingestion (deprecated, use /track)
+paths:
+  /event/:
+    post:
+      tags:
+      - Event
+      description: Deprecated direct event ingestion endpoint. Use /track instead.
+      responses:
+        '200':
+          description: Default Response
