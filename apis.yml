@@ -4,7 +4,19 @@ description: >-
   OpenPanel is an open source product analytics platform that provides event tracking, user journey analysis, real-time
   dashboards, and funnel analysis, offering a privacy-friendly alternative to tools like Mixpanel and Amplitude.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/openpanel.png
 tags:
   - Event Tracking
   - Funnels
@@ -17,29 +29,132 @@ created: '2026-03-26'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: openpanel:openpanel-api
-    name: OpenPanel API
-    description: >-
-      The OpenPanel API allows developers to track events, manage projects, retrieve analytics data, and integrate
-      OpenPanel product analytics into applications and workflows programmatically.
-    humanURL: https://openpanel.dev
-    baseURL: https://api.openpanel.dev
-    properties:
-      - type: Documentation
-        url: https://openpanel.dev/docs
-      - type: GettingStarted
-        url: https://openpanel.dev/docs/getting-started
-      - type: GitHubOrg
-        url: https://github.com/Openpanel-dev/openpanel
-      - type: SDKs
-        url: https://openpanel.dev/docs/sdks
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/openapi/openpanel-openapi.yml
-    tags:
-      - Event Tracking
-      - Open Source
-      - Product Analytics
-      - User Analytics
+- aid: openpanel:openpanel-event-api
+  name: OpenPanel Event API
+  description: Legacy event ingestion (deprecated, use /track)
+  humanURL: https://openpanel.dev
+  baseURL: https://api.openpanel.dev
+  tags:
+  - Event
+  properties:
+  - type: OpenAPI
+    url: openapi/openpanel-event-api-openapi.yml
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: GitHubOrg
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: SDKs
+    url: https://openpanel.dev/docs/sdks
+- aid: openpanel:openpanel-export-api
+  name: OpenPanel Export API
+  description: Export data
+  humanURL: https://openpanel.dev
+  baseURL: https://api.openpanel.dev
+  tags:
+  - Export
+  properties:
+  - type: OpenAPI
+    url: openapi/openpanel-export-api-openapi.yml
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: GitHubOrg
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: SDKs
+    url: https://openpanel.dev/docs/sdks
+- aid: openpanel:openpanel-import-api
+  name: OpenPanel Import API
+  description: Import historical data
+  humanURL: https://openpanel.dev
+  baseURL: https://api.openpanel.dev
+  tags:
+  - Import
+  properties:
+  - type: OpenAPI
+    url: openapi/openpanel-import-api-openapi.yml
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: GitHubOrg
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: SDKs
+    url: https://openpanel.dev/docs/sdks
+- aid: openpanel:openpanel-insights-api
+  name: OpenPanel Insights API
+  description: Query analytics data
+  humanURL: https://openpanel.dev
+  baseURL: https://api.openpanel.dev
+  tags:
+  - Insights
+  properties:
+  - type: OpenAPI
+    url: openapi/openpanel-insights-api-openapi.yml
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: GitHubOrg
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: SDKs
+    url: https://openpanel.dev/docs/sdks
+- aid: openpanel:openpanel-manage-api
+  name: OpenPanel Manage API
+  description: Manage projects and clients
+  humanURL: https://openpanel.dev
+  baseURL: https://api.openpanel.dev
+  tags:
+  - Manage
+  properties:
+  - type: OpenAPI
+    url: openapi/openpanel-manage-api-openapi.yml
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: GitHubOrg
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: SDKs
+    url: https://openpanel.dev/docs/sdks
+- aid: openpanel:openpanel-profile-api
+  name: OpenPanel Profile API
+  description: Identify and update user profiles
+  humanURL: https://openpanel.dev
+  baseURL: https://api.openpanel.dev
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/openpanel-profile-api-openapi.yml
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: GitHubOrg
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: SDKs
+    url: https://openpanel.dev/docs/sdks
+- aid: openpanel:openpanel-track-api
+  name: OpenPanel Track API
+  description: Track events and sessions
+  humanURL: https://openpanel.dev
+  baseURL: https://api.openpanel.dev
+  tags:
+  - Track
+  properties:
+  - type: OpenAPI
+    url: openapi/openpanel-track-api-openapi.yml
+  - type: Documentation
+    url: https://openpanel.dev/docs
+  - type: GettingStarted
+    url: https://openpanel.dev/docs/getting-started
+  - type: GitHubOrg
+    url: https://github.com/Openpanel-dev/openpanel
+  - type: SDKs
+    url: https://openpanel.dev/docs/sdks
 common:
   - type: AgenticAccess
     url: agentic-access/openpanel-agentic-access.yml
