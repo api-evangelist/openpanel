@@ -1,0 +1,26 @@
+{
+  "provider": "openpanel",
+  "sources": [
+    "openpanel-event-api-openapi.yml",
+    "openpanel-export-api-openapi.yml",
+    "openpanel-import-api-openapi.yml",
+    "openpanel-insights-api-openapi.yml",
+    "openpanel-manage-api-openapi.yml",
+    "openpanel-profile-api-openapi.yml",
+    "openpanel-track-api-openapi.yml"
+  ],
+  "outputs": [
+    "openpanel-event-api-openapi.yml",
+    "openpanel-export-api-openapi.yml",
+    "openpanel-import-api-openapi.yml",
+    "openpanel-insights-api-openapi.yml",
+    "openpanel-manage-api-openapi.yml",
+    "openpanel-profile-api-openapi.yml",
+    "openpanel-track-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
