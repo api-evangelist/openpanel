@@ -1,0 +1,63 @@
+# OpenPanel
+
+> OpenPanel is an open-source web and product analytics platform, an open-source alternative to Mixpanel with optional self-hosting.
+
+## Main pages
+- [Home](https://openpanel.dev/)
+- [Features](https://openpanel.dev/features) (event tracking, funnels, retention, web analytics, and more)
+- [Guides](https://openpanel.dev/guides)
+- [Articles](https://openpanel.dev/articles)
+- [Open source](https://openpanel.dev/open-source)
+- [Supporter](https://openpanel.dev/supporter)
+- [About](https://openpanel.dev/about)
+- [Contact](https://openpanel.dev/contact)
+
+## Core docs
+- [What is OpenPanel?](https://openpanel.dev/docs)
+- [Install OpenPanel](https://openpanel.dev/docs/get-started/install-openpanel)
+- [Track Events](https://openpanel.dev/docs/get-started/track-events)
+- [Identify Users](https://openpanel.dev/docs/get-started/identify-users)
+
+## SDKs
+- [SDKs Overview](https://openpanel.dev/docs/sdks)
+- [JavaScript](https://openpanel.dev/docs/sdks/javascript)
+- [React](https://openpanel.dev/docs/sdks/react)
+- [Next.js](https://openpanel.dev/docs/sdks/nextjs)
+- [Vue](https://openpanel.dev/docs/sdks/vue)
+- [React Native](https://openpanel.dev/docs/sdks/react-native)
+- [Swift](https://openpanel.dev/docs/sdks/swift)
+- [Kotlin](https://openpanel.dev/docs/sdks/kotlin)
+- [Python](https://openpanel.dev/docs/sdks/python)
+
+## API
+- [Authentication](https://openpanel.dev/docs/api/authentication)
+- [Track API](https://openpanel.dev/docs/api/track)
+- [Export API](https://openpanel.dev/docs/api/export)
+- [Insights API](https://openpanel.dev/docs/api/insights)
+
+## Self-hosting
+- [Self-hosting Guide](https://openpanel.dev/docs/self-hosting/self-hosting)
+- [Docker Compose](https://openpanel.dev/docs/self-hosting/deploy-docker-compose)
+- [Environment Variables](https://openpanel.dev/docs/self-hosting/environment-variables)
+
+## Pricing
+- [Pricing](https://openpanel.dev/pricing)
+
+## Compare (alternatives)
+- [Mixpanel alternative](https://openpanel.dev/compare/mixpanel-alternative)
+- [PostHog alternative](https://openpanel.dev/compare/posthog-alternative)
+- [Google Analytics alternative](https://openpanel.dev/compare/google-analytics-alternative)
+- [Amplitude alternative](https://openpanel.dev/compare/amplitude-alternative)
+- [Plausible alternative](https://openpanel.dev/compare/plausible-alternative)
+- [Umami alternative](https://openpanel.dev/compare/umami-alternative)
+- [Compare all](https://openpanel.dev/compare)
+
+## Trust & legal
+- [Privacy Policy](https://openpanel.dev/privacy)
+- [Terms of Service](https://openpanel.dev/terms)
+
+## Source
+- [GitHub](https://github.com/Openpanel-dev/openpanel)
+
+## Optional
+- [Full docs for LLMs](https://openpanel.dev/llms-full.txt)

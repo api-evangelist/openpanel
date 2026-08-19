@@ -1,0 +1,350 @@
+{
+  "item": [
+    {
+      "id": "26f9430d-8276-404b-a681-403eb1448442",
+      "name": "Export",
+      "description": {
+        "content": "Export data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf1577a7-d2ef-4483-b5e0-47758c561f7f",
+          "name": "Export a paginated list of raw events with optional filtering by date, profile, and event type.",
+          "request": {
+            "name": "Export a paginated list of raw events with optional filtering by date, profile, and event type.",
+            "description": {
+              "content": "Export a paginated list of raw events with optional filtering by date, profile, and event type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "export",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "profileId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "event",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "includes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includes",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e855b097-55d5-4037-b3f0-eb359a7eace9",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "profileId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "includes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fb9ba61-a13e-48bd-80cc-f215814a5225",
+          "name": "Export aggregated chart/analytics data for a series of events over a time range.",
+          "request": {
+            "name": "Export aggregated chart/analytics data for a series of events over a time range.",
+            "description": {
+              "content": "Export aggregated chart/analytics data for a series of events over a time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "export",
+                "charts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "day",
+                  "description": "The time interval for data aggregation (e.g., day, week, month)"
+                },
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "30d",
+                  "description": "The time range for which data should be displayed"
+                },
+                {
+                  "disabled": false,
+                  "key": "previous",
+                  "value": "false",
+                  "description": "Whether to show data from the previous period for comparison"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>",
+                  "description": "Custom start date for the data range (overrides range if provided)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>",
+                  "description": "Custom end date for the data range (overrides range if provided)"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "series",
+                  "value": "{\"name\":\"<string>\",\"segment\":\"event\",\"property\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "series",
+                  "value": "{\"name\":\"<string>\",\"segment\":\"event\",\"property\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "events",
+                  "value": "{\"name\":\"<string>\",\"segment\":\"event\",\"property\":\"<string>\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "events",
+                  "value": "{\"name\":\"<string>\",\"segment\":\"event\",\"property\":\"<string>\"}"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd212388-3690-4d7e-8e11-a8a2b22b80b1",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export",
+                    "charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "interval",
+                      "value": "day"
+                    },
+                    {
+                      "key": "range",
+                      "value": "30d"
+                    },
+                    {
+                      "key": "previous",
+                      "value": "false"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "series",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "series",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "events",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "events",
+                      "value": "[object Object]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cab4a5e6-e177-4a2b-8734-dc482ddbc9b0",
+    "name": "OpenPanel Event Export API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Legacy event ingestion (deprecated, use /track)",
+      "type": "text/plain"
+    }
+  }
+}

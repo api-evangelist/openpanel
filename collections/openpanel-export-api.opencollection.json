@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenPanel Event Export API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /export/events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/export/events",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "event",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includes",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Export a paginated list of raw events with optional filtering by date, profile, and event type."
+        },
+        {
+          "info": {
+            "name": "GET /export/charts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/export/charts",
+            "params": [
+              {
+                "name": "breakdowns",
+                "value": "",
+                "type": "query",
+                "description": "Array of dimensions to break down the data by"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "The time interval for data aggregation (e.g., day, week, month)"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "The time range for which data should be displayed"
+              },
+              {
+                "name": "previous",
+                "value": "",
+                "type": "query",
+                "description": "Whether to show data from the previous period for comparison"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Custom start date for the data range (overrides range if provided)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Custom end date for the data range (overrides range if provided)"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "series",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "events",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Export aggregated chart/analytics data for a series of events over a time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenPanel Event Profile API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /profile/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/profile/"
+          },
+          "docs": "Identify or update a user profile."
+        },
+        {
+          "info": {
+            "name": "POST /profile/increment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/profile/increment"
+          },
+          "docs": "Increment a numeric property on a user profile."
+        },
+        {
+          "info": {
+            "name": "POST /profile/decrement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/profile/decrement"
+          },
+          "docs": "Decrement a numeric property on a user profile."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

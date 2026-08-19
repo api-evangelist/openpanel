@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenPanel Event API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /event/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/event/"
+          },
+          "docs": "Deprecated direct event ingestion endpoint. Use /track instead."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

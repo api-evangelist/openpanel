@@ -1,0 +1,308 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenPanel Event Manage API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /manage/projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/projects"
+          },
+          "docs": "List all projects for the organization."
+        },
+        {
+          "info": {
+            "name": "POST /manage/projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/manage/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new project and its first write client."
+        },
+        {
+          "info": {
+            "name": "GET /manage/projects/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single project by ID."
+        },
+        {
+          "info": {
+            "name": "PATCH /manage/projects/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/manage/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update project settings (name, domain, CORS, tracking options)."
+        },
+        {
+          "info": {
+            "name": "DELETE /manage/projects/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/manage/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Soft-delete a project (scheduled for removal in 24 hours)."
+        },
+        {
+          "info": {
+            "name": "GET /manage/clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/clients"
+          },
+          "docs": "List all API clients for the organization, optionally filtered by project."
+        },
+        {
+          "info": {
+            "name": "POST /manage/clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/manage/clients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new API client (read, write, or root type) and return its generated secret."
+        },
+        {
+          "info": {
+            "name": "GET /manage/clients/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single API client by ID."
+        },
+        {
+          "info": {
+            "name": "PATCH /manage/clients/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/manage/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an API client name."
+        },
+        {
+          "info": {
+            "name": "DELETE /manage/clients/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/manage/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an API client."
+        },
+        {
+          "info": {
+            "name": "GET /manage/references",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/references"
+          },
+          "docs": "List annotation references for a project."
+        },
+        {
+          "info": {
+            "name": "POST /manage/references",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/manage/references",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GET /manage/references/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/references/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single annotation reference by ID."
+        },
+        {
+          "info": {
+            "name": "PATCH /manage/references/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/manage/references/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DELETE /manage/references/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/manage/references/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GET /manage/projects/{projectId}/dashboards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/projects/:projectId/dashboards",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all dashboards for a project."
+        },
+        {
+          "info": {
+            "name": "GET /manage/projects/{projectId}/dashboards/{dashboardId}/reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/manage/projects/:projectId/dashboards/:dashboardId/reports",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all reports in a dashboard."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

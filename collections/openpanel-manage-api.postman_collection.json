@@ -1,0 +1,1401 @@
+{
+  "item": [
+    {
+      "id": "9315ea56-f2ff-4d27-ae1d-30dc9eb97958",
+      "name": "Manage",
+      "description": {
+        "content": "Manage projects and clients",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5be3dba9-5bc2-4e22-8f88-0dc42849c574",
+          "name": "List all projects for the organization.",
+          "request": {
+            "name": "List all projects for the organization.",
+            "description": {
+              "content": "List all projects for the organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81197149-400a-4ed2-a1d1-e68d1666dc96",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7d6bd1f-e533-4170-bc02-47afd5879e31",
+          "name": "Create a new project and its first write client.",
+          "request": {
+            "name": "Create a new project and its first write client.",
+            "description": {
+              "content": "Create a new project and its first write client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<uri>\",\n  \"crossDomain\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4224257-62e2-41d2-86b9-6b0db6a35a98",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<uri>\",\n  \"crossDomain\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1d4b6cb-03f4-491e-a7f8-98c766387347",
+          "name": "Get a single project by ID.",
+          "request": {
+            "name": "Get a single project by ID.",
+            "description": {
+              "content": "Get a single project by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "projects",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b906014-0168-4587-9f70-a2b85b0ed617",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc04e289-25f7-462d-b919-f48b1cd8fcb1",
+          "name": "Update project settings (name, domain, CORS, tracking options).",
+          "request": {
+            "name": "Update project settings (name, domain, CORS, tracking options).",
+            "description": {
+              "content": "Update project settings (name, domain, CORS, tracking options).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "projects",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<uri>\",\n  \"cors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"crossDomain\": \"<boolean>\",\n  \"allowUnsafeRevenueTracking\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0866fe14-d3fe-471f-8a17-f94f9d64cdd2",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"domain\": \"<uri>\",\n  \"cors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"crossDomain\": \"<boolean>\",\n  \"allowUnsafeRevenueTracking\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75d0a088-a27d-4b04-86a8-be5fa29d9795",
+          "name": "Soft-delete a project (scheduled for removal in 24 hours).",
+          "request": {
+            "name": "Soft-delete a project (scheduled for removal in 24 hours).",
+            "description": {
+              "content": "Soft-delete a project (scheduled for removal in 24 hours).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "projects",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78f25a12-8d99-4bae-827c-9ca15a932a26",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "projects",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79ef3367-7a25-4e85-bbbd-636e936a41e2",
+          "name": "List all API clients for the organization, optionally filtered by project.",
+          "request": {
+            "name": "List all API clients for the organization, optionally filtered by project.",
+            "description": {
+              "content": "List all API clients for the organization, optionally filtered by project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01d65497-6fe2-4cbb-a828-6b0391c93147",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb8cac43-f2a2-4886-b18a-ea1ff4d62247",
+          "name": "Create a new API client (read, write, or root type) and return its generated secret.",
+          "request": {
+            "name": "Create a new API client (read, write, or root type) and return its generated secret.",
+            "description": {
+              "content": "Create a new API client (read, write, or root type) and return its generated secret.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"type\": \"write\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb80d557-adf2-4c01-b865-f4b3b7778ad6",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"type\": \"write\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2fff3d4-aca3-450e-889c-63dbfcc7364c",
+          "name": "Get a single API client by ID.",
+          "request": {
+            "name": "Get a single API client by ID.",
+            "description": {
+              "content": "Get a single API client by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16cc1b02-85d5-49cd-a7b0-acaef97e5133",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9901977-3aa9-4eb4-9aa1-02c1bcd19402",
+          "name": "Update an API client name.",
+          "request": {
+            "name": "Update an API client name.",
+            "description": {
+              "content": "Update an API client name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d91a13b0-c16b-4891-9dc0-3d48b7d7540a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3e08861-ceb9-415d-ae2e-b39c8d0720fe",
+          "name": "Delete an API client.",
+          "request": {
+            "name": "Delete an API client.",
+            "description": {
+              "content": "Delete an API client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bf1f62c-f248-473e-9b73-f3bf79e4d91e",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a584c1d-3e8b-49d6-ab42-e5c803df04dd",
+          "name": "List annotation references for a project.",
+          "request": {
+            "name": "List annotation references for a project.",
+            "description": {
+              "content": "List annotation references for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "references"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5415d657-87cb-4053-aa59-fb9a37ec4dff",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "references"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5b17937-6375-41d3-af52-dc29582c1d77",
+          "name": "/manage/references",
+          "request": {
+            "name": "/manage/references",
+            "description": {},
+            "url": {
+              "path": [
+                "manage",
+                "references"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"datetime\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0bdaaf5d-3af2-45d5-af8e-26ff1872d0ec",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "references"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<string>\",\n  \"title\": \"<string>\",\n  \"datetime\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4713227a-bb0c-43eb-a4cf-2e8bb3b8aff2",
+          "name": "Get a single annotation reference by ID.",
+          "request": {
+            "name": "Get a single annotation reference by ID.",
+            "description": {
+              "content": "Get a single annotation reference by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "references",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "089481d0-ab42-4147-ae8a-86bd13d698cc",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "references",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e44fe399-4e0b-4b33-9fe8-3323032880c2",
+          "name": "/manage/references/:id",
+          "request": {
+            "name": "/manage/references/:id",
+            "description": {},
+            "url": {
+              "path": [
+                "manage",
+                "references",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"datetime\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6d57359-a00e-4cc8-a26a-f2cdfc7bb826",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "references",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"datetime\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "830b866f-d8b6-439c-9169-d0b7417bcf70",
+          "name": "/manage/references/:id",
+          "request": {
+            "name": "/manage/references/:id",
+            "description": {},
+            "url": {
+              "path": [
+                "manage",
+                "references",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fd491a2-59e7-4279-b8c7-deaa71617e11",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "references",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "902e3c09-ea2e-4d14-b10d-ee306ec3534e",
+          "name": "List all dashboards for a project.",
+          "request": {
+            "name": "List all dashboards for a project.",
+            "description": {
+              "content": "List all dashboards for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "projects",
+                ":projectId",
+                "dashboards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "554a6337-3271-42a0-be46-0fc418b09096",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "projects",
+                    ":projectId",
+                    "dashboards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37ffc04d-7acc-4cf0-8080-5aae8fe3c1ba",
+          "name": "List all reports in a dashboard.",
+          "request": {
+            "name": "List all reports in a dashboard.",
+            "description": {
+              "content": "List all reports in a dashboard.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "manage",
+                "projects",
+                ":projectId",
+                "dashboards",
+                ":dashboardId",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dashboardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be68d291-c00e-4e70-837d-92569331331a",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "manage",
+                    "projects",
+                    ":projectId",
+                    "dashboards",
+                    ":dashboardId",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dashboardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "51510ed3-18e2-4189-ac56-5a0add38f474",
+    "name": "OpenPanel Event Manage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Legacy event ingestion (deprecated, use /track)",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenPanel Event Track API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Track",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /track/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/track/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ingest a tracking event (track, identify, group, increment, decrement, replay)."
+        },
+        {
+          "info": {
+            "name": "GET /track/device-id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/track/device-id"
+          },
+          "docs": "Get or generate a stable device ID and session ID for the current visitor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenPanel Event Insights API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/overview",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an overview of key metrics for the project (sessions, pageviews, bounce rate, duration)."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/active_users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/active_users",
+            "params": [
+              {
+                "name": "days",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get rolling active user counts over the last N days."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/retention",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/retention",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get weekly retention series data."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/retention/cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/retention/cohort",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get retention cohort data."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/pages/top",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/pages/top",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the top pages by pageviews for the given date range."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/pages/entry_exit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/pages/entry_exit",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get entry or exit pages ranked by session count."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/pages/performance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/pages/performance",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get page-level performance metrics (bounce rate, avg duration, sessions)."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/metrics",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get aggregated website metrics including sessions, pageviews, and bounce rate."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/live",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/live",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the current number of live (active) visitors."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/pages",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top pages with pageview counts for the selected date range."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/referrer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/referrer",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"referrer\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/referrer_name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/referrer_name",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"referrer_name\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/referrer_type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/referrer_type",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"referrer_type\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/utm_source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/utm_source",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"utm_source\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/utm_medium",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/utm_medium",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"utm_medium\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/utm_campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/utm_campaign",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"utm_campaign\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/utm_term",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/utm_term",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"utm_term\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/utm_content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/utm_content",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"utm_content\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/region",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"region\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/country",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"country\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/city",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/city",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"city\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/device",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"device\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/brand",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"brand\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/model",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"model\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/browser",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/browser",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"browser\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/browser_version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/browser_version",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"browser_version\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/os",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/os",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"os\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/os_version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/os_version",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top values for the \"os_version\" dimension."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/funnel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/funnel",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "steps",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "windowHours",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get funnel conversion rates for a sequence of events."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/traffic/referrers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/traffic/referrers",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "breakdown",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get traffic breakdown by referrer source."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/traffic/geo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/traffic/geo",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "breakdown",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get traffic breakdown by geographic dimension (country, region, city)."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/traffic/devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/traffic/devices",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "breakdown",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get traffic breakdown by device type, browser, or OS."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/user_flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/user_flow",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startEvent",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endEvent",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "steps",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get user flow paths before, after, or between specified events."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/engagement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/engagement",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get engagement metrics for the project."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/events",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "eventNames",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "device",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "browser",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "os",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "referrer",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "referrerName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "referrerType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "properties",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Query events with optional filters for date range, profile, and properties."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/events/names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/events/names",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all distinct event names tracked in the project."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/events/properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/events/properties",
+            "params": [
+              {
+                "name": "eventName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all property keys for a given event name."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/events/property_values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/events/property_values",
+            "params": [
+              {
+                "name": "eventName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "propertyKey",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the top values for a specific event property key."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/profiles",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "device",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "browser",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "inactiveDays",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minSessions",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "performedEvent",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Search and filter user profiles."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/profiles/{profileId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/profiles/:profileId",
+            "params": [
+              {
+                "name": "eventLimit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single user profile with their recent events."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/profiles/{profileId}/sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/profiles/:profileId/sessions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get sessions for a specific user profile."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/profiles/{profileId}/metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/profiles/:profileId/metrics",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get aggregated metrics for a specific user profile."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/sessions",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "device",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "browser",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "os",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "referrer",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "referrerName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "referrerType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "profileId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Query sessions with optional filters."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/groups/types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/groups/types",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all group types defined in the project."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/groups",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Search and filter groups."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/groups/{groupId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/groups/:groupId",
+            "params": [
+              {
+                "name": "memberLimit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single group with its members."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/reports/{reportId}/data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/reports/:reportId/data",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the data for a saved report."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/gsc/overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/gsc/overview",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a Google Search Console performance overview (clicks, impressions, CTR, position)."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/gsc/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/gsc/pages",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top pages from Google Search Console."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/gsc/pages/details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/gsc/pages/details",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get detailed GSC metrics for a specific page URL."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/gsc/queries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/gsc/queries",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get top search queries from Google Search Console."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/gsc/queries/details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/gsc/queries/details",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get detailed GSC metrics for a specific search query."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/gsc/queries/opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/gsc/queries/opportunities",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "minImpressions",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get GSC query opportunities (high impressions, low CTR)."
+        },
+        {
+          "info": {
+            "name": "GET /insights/{projectId}/gsc/cannibalization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/insights/:projectId/gsc/cannibalization",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detect keyword cannibalization across pages in Google Search Console."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

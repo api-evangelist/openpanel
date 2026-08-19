@@ -1,0 +1,197 @@
+{
+  "item": [
+    {
+      "id": "4566aa71-b1c7-4d0c-a6a7-e40e3b989754",
+      "name": "Track",
+      "description": {
+        "content": "Track events and sessions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "894a8d0d-e430-4e12-8d0c-4613ebfd190f",
+          "name": "Ingest a tracking event (track, identify, group, increment, decrement, replay).",
+          "request": {
+            "name": "Ingest a tracking event (track, identify, group, increment, decrement, replay).",
+            "description": {
+              "content": "Ingest a tracking event (track, identify, group, increment, decrement, replay).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"payload\": {\n    \"name\": \"<string>\",\n    \"properties\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    },\n    \"profileId\": \"<string>\",\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d188b95a-724c-497f-a826-b4712377f28f",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"payload\": {\n    \"name\": \"<string>\",\n    \"properties\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"profileId\": \"<string>\",\n    \"groups\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deviceId\": \"string\",\n  \"sessionId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "980d0b5b-924a-4da7-a78d-c7f2777f2dae",
+          "name": "Get or generate a stable device ID and session ID for the current visitor.",
+          "request": {
+            "name": "Get or generate a stable device ID and session ID for the current visitor.",
+            "description": {
+              "content": "Get or generate a stable device ID and session ID for the current visitor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track",
+                "device-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a930089b-ed1e-4f0e-9909-3de0be89b06f",
+              "name": "Default Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "device-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deviceId\": \"string\",\n  \"sessionId\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0505c554-93cc-437c-8ad5-8f2007223aa4",
+    "name": "OpenPanel Event Track API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Legacy event ingestion (deprecated, use /track)",
+      "type": "text/plain"
+    }
+  }
+}
