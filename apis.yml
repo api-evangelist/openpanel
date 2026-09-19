@@ -144,6 +144,8 @@ apis:
   humanURL: https://openpanel.dev
   baseURL: https://api.openpanel.dev
   tags:
+  - Profiles
+  tags_raw:
   - Profile
   properties:
   - type: OpenAPI
