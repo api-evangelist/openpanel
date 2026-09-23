@@ -1,13 +1,7 @@
 {
   "provider": "openpanel",
   "sources": [
-    "openpanel-event-api-openapi.yml",
-    "openpanel-export-api-openapi.yml",
-    "openpanel-import-api-openapi.yml",
-    "openpanel-insights-api-openapi.yml",
-    "openpanel-manage-api-openapi.yml",
-    "openpanel-profile-api-openapi.yml",
-    "openpanel-track-api-openapi.yml"
+    "_original/openpanel-openapi.yml"
   ],
   "outputs": [
     "openpanel-event-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openpanel-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "openpanel-event-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "openpanel-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "openpanel-import-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "openpanel-insights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "openpanel-manage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "openpanel-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "openpanel-track-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

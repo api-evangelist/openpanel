@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenPanel Event Export API
+  title: OpenPanel Export API
   version: 1.0.0
-  description: Legacy event ingestion (deprecated, use /track)
+  description: Export data
 tags:
 - name: Export
   description: Export data
@@ -60,6 +60,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get export events
+      x-summary-source: derived
+      operationId: getExportEvents
+      x-operation-id-source: derived
   /export/charts:
     get:
       tags:
@@ -308,3 +312,7 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get export charts
+      x-summary-source: derived
+      operationId: getExportCharts
+      x-operation-id-source: derived

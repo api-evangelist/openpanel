@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenPanel Event Profile API
+  title: OpenPanel Profile API
   version: 1.0.0
-  description: Legacy event ingestion (deprecated, use /track)
+  description: Identify and update user profiles
 tags:
 - name: Profile
   description: Identify and update user profiles
@@ -15,6 +15,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Create profile
+      x-summary-source: derived
+      operationId: postProfile
+      x-operation-id-source: derived
   /profile/increment:
     post:
       tags:
@@ -23,6 +27,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Create profile increment
+      x-summary-source: derived
+      operationId: postProfileIncrement
+      x-operation-id-source: derived
   /profile/decrement:
     post:
       tags:
@@ -31,3 +39,7 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Create profile decrement
+      x-summary-source: derived
+      operationId: postProfileDecrement
+      x-operation-id-source: derived

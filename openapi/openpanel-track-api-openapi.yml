@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenPanel Event Track API
+  title: OpenPanel Track API
   version: 1.0.0
-  description: Legacy event ingestion (deprecated, use /track)
+  description: Track events and sessions
 tags:
 - name: Track
   description: Track events and sessions
@@ -279,6 +279,10 @@ paths:
                 - deviceId
                 - sessionId
                 additionalProperties: false
+      summary: Create track
+      x-summary-source: derived
+      operationId: postTrack
+      x-operation-id-source: derived
   /track/device-id:
     get:
       tags:
@@ -302,3 +306,7 @@ paths:
                 - deviceId
                 - sessionId
                 additionalProperties: false
+      summary: Get track device id
+      x-summary-source: derived
+      operationId: getTrackDeviceId
+      x-operation-id-source: derived

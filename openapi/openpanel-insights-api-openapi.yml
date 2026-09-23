@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenPanel Event Insights API
+  title: OpenPanel Insights API
   version: 1.0.0
-  description: Legacy event ingestion (deprecated, use /track)
+  description: Query analytics data
 tags:
 - name: Insights
   description: Query analytics data
@@ -56,6 +56,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id overview
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdOverview
+      x-operation-id-source: derived
   /insights/{projectId}/active_users:
     get:
       tags:
@@ -77,6 +81,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id active users
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdActiveUsers
+      x-operation-id-source: derived
   /insights/{projectId}/retention:
     get:
       tags:
@@ -91,6 +99,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id retention
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdRetention
+      x-operation-id-source: derived
   /insights/{projectId}/retention/cohort:
     get:
       tags:
@@ -105,6 +117,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id retention cohort
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdRetentionCohort
+      x-operation-id-source: derived
   /insights/{projectId}/pages/top:
     get:
       tags:
@@ -145,6 +161,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id pages top
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdPagesTop
+      x-operation-id-source: derived
   /insights/{projectId}/pages/entry_exit:
     get:
       tags:
@@ -193,6 +213,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id pages entry exit
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdPagesEntryExit
+      x-operation-id-source: derived
   /insights/{projectId}/pages/performance:
     get:
       tags:
@@ -260,6 +284,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id pages performance
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdPagesPerformance
+      x-operation-id-source: derived
   /insights/{projectId}/metrics:
     get:
       tags:
@@ -356,6 +384,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id metrics
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdMetrics
+      x-operation-id-source: derived
   /insights/{projectId}/live:
     get:
       tags:
@@ -370,6 +402,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id live
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdLive
+      x-operation-id-source: derived
   /insights/{projectId}/pages:
     get:
       tags:
@@ -475,6 +511,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id pages
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdPages
+      x-operation-id-source: derived
   /insights/{projectId}/referrer:
     get:
       tags:
@@ -580,6 +620,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id referrer
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdReferrer
+      x-operation-id-source: derived
   /insights/{projectId}/referrer_name:
     get:
       tags:
@@ -685,6 +729,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id referrer name
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdReferrerName
+      x-operation-id-source: derived
   /insights/{projectId}/referrer_type:
     get:
       tags:
@@ -790,6 +838,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id referrer type
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdReferrerType
+      x-operation-id-source: derived
   /insights/{projectId}/utm_source:
     get:
       tags:
@@ -895,6 +947,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id utm source
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdUtmSource
+      x-operation-id-source: derived
   /insights/{projectId}/utm_medium:
     get:
       tags:
@@ -1000,6 +1056,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id utm medium
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdUtmMedium
+      x-operation-id-source: derived
   /insights/{projectId}/utm_campaign:
     get:
       tags:
@@ -1105,6 +1165,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id utm campaign
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdUtmCampaign
+      x-operation-id-source: derived
   /insights/{projectId}/utm_term:
     get:
       tags:
@@ -1210,6 +1274,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id utm term
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdUtmTerm
+      x-operation-id-source: derived
   /insights/{projectId}/utm_content:
     get:
       tags:
@@ -1315,6 +1383,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id utm content
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdUtmContent
+      x-operation-id-source: derived
   /insights/{projectId}/region:
     get:
       tags:
@@ -1420,6 +1492,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id region
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdRegion
+      x-operation-id-source: derived
   /insights/{projectId}/country:
     get:
       tags:
@@ -1525,6 +1601,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id country
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdCountry
+      x-operation-id-source: derived
   /insights/{projectId}/city:
     get:
       tags:
@@ -1630,6 +1710,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id city
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdCity
+      x-operation-id-source: derived
   /insights/{projectId}/device:
     get:
       tags:
@@ -1735,6 +1819,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id device
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdDevice
+      x-operation-id-source: derived
   /insights/{projectId}/brand:
     get:
       tags:
@@ -1840,6 +1928,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id brand
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdBrand
+      x-operation-id-source: derived
   /insights/{projectId}/model:
     get:
       tags:
@@ -1945,6 +2037,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id model
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdModel
+      x-operation-id-source: derived
   /insights/{projectId}/browser:
     get:
       tags:
@@ -2050,6 +2146,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id browser
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdBrowser
+      x-operation-id-source: derived
   /insights/{projectId}/browser_version:
     get:
       tags:
@@ -2155,6 +2255,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id browser version
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdBrowserVersion
+      x-operation-id-source: derived
   /insights/{projectId}/os:
     get:
       tags:
@@ -2260,6 +2364,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id os
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdOs
+      x-operation-id-source: derived
   /insights/{projectId}/os_version:
     get:
       tags:
@@ -2365,6 +2473,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id os version
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdOsVersion
+      x-operation-id-source: derived
   /insights/{projectId}/funnel:
     get:
       tags:
@@ -2429,6 +2541,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id funnel
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdFunnel
+      x-operation-id-source: derived
   /insights/{projectId}/traffic/referrers:
     get:
       tags:
@@ -2481,6 +2597,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id traffic referrers
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdTrafficReferrers
+      x-operation-id-source: derived
   /insights/{projectId}/traffic/geo:
     get:
       tags:
@@ -2530,6 +2650,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id traffic geo
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdTrafficGeo
+      x-operation-id-source: derived
   /insights/{projectId}/traffic/devices:
     get:
       tags:
@@ -2579,6 +2703,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id traffic devices
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdTrafficDevices
+      x-operation-id-source: derived
   /insights/{projectId}/user_flow:
     get:
       tags:
@@ -2660,6 +2788,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id user flow
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdUserFlow
+      x-operation-id-source: derived
   /insights/{projectId}/engagement:
     get:
       tags:
@@ -2674,6 +2806,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id engagement
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdEngagement
+      x-operation-id-source: derived
   /insights/{projectId}/events:
     get:
       tags:
@@ -2777,6 +2913,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id events
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdEvents
+      x-operation-id-source: derived
   /insights/{projectId}/events/names:
     get:
       tags:
@@ -2791,6 +2931,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id events names
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdEventsNames
+      x-operation-id-source: derived
   /insights/{projectId}/events/properties:
     get:
       tags:
@@ -2809,6 +2953,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id events properties
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdEventsProperties
+      x-operation-id-source: derived
   /insights/{projectId}/events/property_values:
     get:
       tags:
@@ -2833,6 +2981,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id events property values
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdEventsPropertyValues
+      x-operation-id-source: derived
   /insights/{projectId}/profiles:
     get:
       tags:
@@ -2902,6 +3054,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id profiles
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdProfiles
+      x-operation-id-source: derived
   /insights/{projectId}/profiles/{profileId}:
     get:
       tags:
@@ -2928,6 +3084,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id profiles by profile id
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdProfilesByProfileId
+      x-operation-id-source: derived
   /insights/{projectId}/profiles/{profileId}/sessions:
     get:
       tags:
@@ -2954,6 +3114,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id profiles by profile id sessions
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdProfilesByProfileIdSessions
+      x-operation-id-source: derived
   /insights/{projectId}/profiles/{profileId}/metrics:
     get:
       tags:
@@ -2973,6 +3137,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id profiles by profile id metrics
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdProfilesByProfileIdMetrics
+      x-operation-id-source: derived
   /insights/{projectId}/sessions:
     get:
       tags:
@@ -3056,6 +3224,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id sessions
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdSessions
+      x-operation-id-source: derived
   /insights/{projectId}/groups/types:
     get:
       tags:
@@ -3070,6 +3242,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id groups types
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGroupsTypes
+      x-operation-id-source: derived
   /insights/{projectId}/groups:
     get:
       tags:
@@ -3099,6 +3275,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id groups
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGroups
+      x-operation-id-source: derived
   /insights/{projectId}/groups/{groupId}:
     get:
       tags:
@@ -3125,6 +3305,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id groups by group id
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGroupsByGroupId
+      x-operation-id-source: derived
   /insights/{projectId}/reports/{reportId}/data:
     get:
       tags:
@@ -3144,6 +3328,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id reports by report id data
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdReportsByReportIdData
+      x-operation-id-source: derived
   /insights/{projectId}/gsc/overview:
     get:
       tags:
@@ -3193,6 +3381,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id gsc overview
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGscOverview
+      x-operation-id-source: derived
   /insights/{projectId}/gsc/pages:
     get:
       tags:
@@ -3240,6 +3432,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id gsc pages
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGscPages
+      x-operation-id-source: derived
   /insights/{projectId}/gsc/pages/details:
     get:
       tags:
@@ -3286,6 +3482,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id gsc pages details
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGscPagesDetails
+      x-operation-id-source: derived
   /insights/{projectId}/gsc/queries:
     get:
       tags:
@@ -3333,6 +3533,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id gsc queries
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGscQueries
+      x-operation-id-source: derived
   /insights/{projectId}/gsc/queries/details:
     get:
       tags:
@@ -3378,6 +3582,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id gsc queries details
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGscQueriesDetails
+      x-operation-id-source: derived
   /insights/{projectId}/gsc/queries/opportunities:
     get:
       tags:
@@ -3425,6 +3633,10 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id gsc queries opportunities
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGscQueriesOpportunities
+      x-operation-id-source: derived
   /insights/{projectId}/gsc/cannibalization:
     get:
       tags:
@@ -3465,3 +3677,7 @@ paths:
       responses:
         '200':
           description: Default Response
+      summary: Get insights by project id gsc cannibalization
+      x-summary-source: derived
+      operationId: getInsightsByProjectIdGscCannibalization
+      x-operation-id-source: derived
