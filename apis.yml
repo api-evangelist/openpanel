@@ -5,16 +5,22 @@ description: >-
   dashboards, and funnel analysis, offering a privacy-friendly alternative to tools like Mixpanel and Amplitude.
 type: Index
 deliveryModel:
-  model: saas
-  open_source: false
+  model: open-core
+  license: AGPL-3.0
+  license_evidence:
+    repo: openpanel-dev/openpanel
+    spdx: AGPL-3.0
+    stars: 7052
+  open_source: true
   commercial: true
-  callable_host: true
-  label: Hosted service · you call their endpoint
-  confidence: high
+  callable_host: false
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: medium
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -32,7 +38,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/openpanel.
 tags:
   - Event Tracking
   - Funnels
-  - Open-Source
+  - Open Source
   - Product Analytics
   - Real-Time Analytics
   - User Analytics
@@ -43,6 +49,7 @@ tags_raw:
   - Product Analytics
   - Real-Time Analytics
   - User Analytics
+  - Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml
 created: '2026-03-26'
 modified: '2026-05-19'
