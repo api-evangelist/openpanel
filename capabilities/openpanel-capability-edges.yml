@@ -1,0 +1,44 @@
+slug: openpanel
+provider: OpenPanel
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Insights
+  spec_file: openpanel-insights-api-openapi.yml
+  capability_id: BC-4280.30
+  capability_id_l1: BC-4280
+  capability_name: Product Usage Analytics
+  confidence: 0.9
+  evidence: '"Query analytics data"; "Get insights by project id retention cohort"; "Get insights by project
+    id active users"; "Get insights by project id pages entry exit"'
+  reason: Operations return retention cohorts, active users, top pages and engagement metrics — the analytical
+    views of product usage described by Product Usage Analytics.
+- tag: Track
+  spec_file: openpanel-track-api-openapi.yml
+  capability_id: BC-4280.10
+  capability_id_l1: BC-4280
+  capability_name: Product Telemetry Instrumentation
+  confidence: 0.9
+  evidence: '"Track events and sessions"; POST /track/ "Create track"; GET /track/device-id'
+  reason: Primary event-ingestion endpoint of a product analytics platform capturing usage events and
+    session/device identity from client runtimes — Product Telemetry Instrumentation.
+- tag: Event
+  spec_file: openpanel-event-api-openapi.yml
+  capability_id: BC-4280.10
+  capability_id_l1: BC-4280
+  capability_name: Product Telemetry Instrumentation
+  confidence: 0.85
+  evidence: 'openapi description: ''Legacy event ingestion (deprecated, use /track)''; vendor: ''open
+    source product analytics platform that provides event tracking'''
+  reason: The single operation ingests product usage events into an analytics platform — product telemetry
+    instrumentation.

@@ -184,6 +184,9 @@ apis:
   - type: SDKs
     url: https://openpanel.dev/docs/sdks
 common:
+  - type: CapabilityMap
+    url: capabilities/openpanel-capability-edges.yml
+    name: OpenPanel Business Capability Map
   - type: AgenticAccess
     url: agentic-access/openpanel-agentic-access.yml
   - type: VulnerabilityDisclosure
