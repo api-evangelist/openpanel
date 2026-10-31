@@ -1,4 +1,4 @@
-# OpenPanel (openpanel)
+# OpenPanel
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,65 +66,128 @@
 
 OpenPanel is an open source product analytics platform that provides event tracking, user journey analysis, real-time dashboards, and funnel analysis, offering a privacy-friendly alternative to tools like Mixpanel and Amplitude.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/apis.yml)
+**Areas:** Event Tracking · Funnels · Open Source · Product Analytics · Real-Time Analytics · User Analytics
 
-## Scope
+## OpenPanel on APIs.io
 
-- **Type:** Index
+Everything profiled for OpenPanel is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/openpanel/](https://apis.io/providers/openpanel/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Event Tracking
-- Funnels
-- Open Source
-- Product Analytics
-- Real-Time Analytics
-- User Analytics
+- [OpenPanel Event API](https://apis.io/apis/openpanel/openpanel-event-api/) — Legacy event ingestion (deprecated, use /track)
+- [OpenPanel Export API](https://apis.io/apis/openpanel/openpanel-export-api/) — Export data
+- [OpenPanel Import API](https://apis.io/apis/openpanel/openpanel-import-api/) — Import historical data
+- [OpenPanel Insights API](https://apis.io/apis/openpanel/openpanel-insights-api/) — Query analytics data
+- [OpenPanel Manage API](https://apis.io/apis/openpanel/openpanel-manage-api/) — Manage projects and clients
+- [OpenPanel Profile API](https://apis.io/apis/openpanel/openpanel-profile-api/) — Identify and update user profiles
+- [OpenPanel Track API](https://apis.io/apis/openpanel/openpanel-track-api/) — Track events and sessions
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### OpenPanel API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The OpenPanel API allows developers to track events, manage projects, retrieve analytics data, and integrate OpenPanel product analytics into applications and workflows programmatically.
+- [Openpanel Agentic Access](https://apis.io/agentic-access/openpanel/openpanel-agentic-access/)
 
-- **Human URL:** [https://openpanel.dev](https://openpanel.dev)
-- **Base URL:** `https://api.openpanel.dev`
+#### Collections (8)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Event Tracking
-- Open Source
-- Product Analytics
-- User Analytics
+- [OpenPanel API](https://apis.io/collections/openpanel/open-openpanel/)
+- [OpenPanel Event API](https://apis.io/collections/openpanel/open-openpanel-event-api/)
+- [OpenPanel Event Export API](https://apis.io/collections/openpanel/open-openpanel-export-api/)
+- [OpenPanel Event Import API](https://apis.io/collections/openpanel/open-openpanel-import-api/)
+- [OpenPanel Event Insights API](https://apis.io/collections/openpanel/open-openpanel-insights-api/)
+- [OpenPanel Event Manage API](https://apis.io/collections/openpanel/open-openpanel-manage-api/)
+- [OpenPanel Event Profile API](https://apis.io/collections/openpanel/open-openpanel-profile-api/)
+- [OpenPanel Event Track API](https://apis.io/collections/openpanel/open-openpanel-track-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://openpanel.dev/docs)
-- [Getting Started](https://openpanel.dev/docs/getting-started)
-- [Git Hub Org](https://github.com/Openpanel-dev/openpanel)
-- [S D Ks](https://openpanel.dev/docs/sdks)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/openpanel/refs/heads/main/openapi/openpanel-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/openpanel.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/openpanel.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Openpanel Domain Security](https://apis.io/security/openpanel/openpanel-domain-security/)
+- [Openpanel Vulnerability Disclosure](https://apis.io/security/openpanel/openpanel-vulnerability-disclosure/)
 
-- [LinkedIn](https://www.linkedin.com/company/openpanel)
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Openpanel Plans Pricing](https://apis.io/plans/openpanel/openpanel-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Openpanel Rate Limits](https://apis.io/rate-limits/openpanel/openpanel-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Openpanel Finops](https://apis.io/finops/openpanel/openpanel-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://openpanel.dev)
 - [Documentation](https://openpanel.dev/docs)
-- [Git Hub](https://github.com/Openpanel-dev/openpanel)
-- [Getting Started](https://openpanel.dev/docs/getting-started)
+- [Getting started](https://openpanel.dev/docs/getting-started)
 - [Blog](https://openpanel.dev/blog)
-- [Self Hosting](https://openpanel.dev/docs/self-hosting)
-- [Login](https://dashboard.openpanel.dev)
-- [L L Ms Txt](https://openpanel.dev/llms.txt)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 24.3** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 40.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 14.5 |
+
+**Agent readiness 15.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/openpanel/](https://apis.io/providers/openpanel/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for OpenPanel: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/openpanel/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
